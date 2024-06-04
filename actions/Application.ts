@@ -1,0 +1,131 @@
+"use server";
+
+import { db } from "@/lib/db";
+import { FormDataSchema } from "../schemas";
+
+export const application = async (values:any) =>{
+
+    const validatedFields = FormDataSchema.safeParse(values);
+
+    if (!validatedFields.success) {
+      return { error: "Invalid fields!" };
+    }
+
+    const {firstName,lastName,email,country,street,city,state,zip,phonenumber,currentEmployer,jobTitle,empStatus,monthlyIncome,payFreq,propAddress,rentAmt,
+        manageCompany,managerName,payMethod,bankName,acctHoldName,acctNumber,instNumber,hearAbtRx,routNumber
+    } = validatedFields.data;
+  
+    console.log(validatedFields.data);
+   
+
+    const existingUser = await db.application.findUnique({
+      where:{
+        email,
+      }
+    })
+    if(existingUser){
+      return {error:"Email already exist"}
+    }
+    const name = firstName + ' ' + lastName;
+
+    await db.application.create({
+        data:{
+          name,
+          email,
+        country,
+        street,city,
+        state,zip,
+        phonenumber,
+        currentEmployer,jobTitle,
+        empStatus,
+        monthlyIncome,
+        payFreq,
+        propAddress,rentAmt,
+        manageCompany,managerName,
+        payMethod,
+        bankName,
+        acctHoldName,
+        acctNumber,
+        instNumber,
+        routNumber,
+        hearAbtRx,
+        },
+      });
+
+    
+//   if (email) {
+//     if (code) {
+//       const twoFactorToken = await getTwoFactorTokenByEmail(
+//       email
+//       );
+
+//       if (!twoFactorToken) {
+//         return { error: "Invalid code!" };
+//       }
+
+//       if (twoFactorToken.token !== code) {
+//         return { error: "Invalid code!" };
+//       }
+
+//       const hasExpired = new Date(twoFactorToken.expires) < new Date();
+
+//       if (hasExpired) {
+//         return { error: "Code expired!" };
+//       }
+
+//       await db.twoFactorToken.delete({
+//         where: { id: twoFactorToken.id }
+//       });
+
+//       // const existingConfirmation = await getTwoFactorConfirmationByUserId(
+//       //   existingUser.id
+//       // );
+
+//       // if (existingConfirmation) {
+//       //   await db.twoFactorConfirmation.delete({
+//       //     where: { id: existingConfirmation.id }
+//       //   });
+//       // }
+
+//       await db.twoFactorConfirmation.create({
+//         data: {
+//           userId: email,
+//         }
+//       });
+//     } else {
+//       const twoFactorToken = await generateTwoFactorToken(email)
+//       await sendTwoFactorTokenEmail(
+//         twoFactorToken.email,
+//         twoFactorToken.token,
+//       );
+
+//       return { twoFactor: true };
+//     }
+//   }
+
+  
+
+
+
+
+   
+    
+
+
+
+
+
+
+
+
+
+    // const verificationToken = await generateVerificationToken(email);
+    // await sendVerificationEmail(
+    //   verificationToken.email,
+    //   verificationToken.token,
+    // );
+
+    return { success: "Application created Succesfully!" };
+
+    
+}
