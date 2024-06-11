@@ -26,7 +26,7 @@ export const SidebarItem = ({ icon, title, isActive, href = "" }: Props) => {
       <div
         className={clsx(
           isActive
-            ? "bg-lime-50 border-solid border-2 border-lime-300"
+            ? "bg-lime-50 border-solid border-2 border-lime-300 dark:text-black"
             : "hover:border-solid hover:border-2 hover:border-lime-300",
           "flex gap-2 w-full min-h-[44px] h-full items-center px-3.5 rounded-2xl cursor-pointer transition-all duration-150 active:scale-[0.98]"
         )}
