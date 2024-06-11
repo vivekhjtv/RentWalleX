@@ -19,7 +19,7 @@ interface Company {
 
 export const CompaniesDropdown = () => {
   const [company, setCompany] = useState<Company>({
-    name: "Rentx",
+    name: "RentWallex",
     logo: <AcmeIcon />,
   });
   return (
@@ -42,7 +42,7 @@ export const CompaniesDropdown = () => {
           <BottomIcon />
         </div>
       </DropdownTrigger>
-      <DropdownMenu
+      {/* <DropdownMenu
         onAction={(e) => {
           if (e === "1") {
             setCompany({
@@ -121,7 +121,7 @@ export const CompaniesDropdown = () => {
             Acme Co.
           </DropdownItem>
         </DropdownSection>
-      </DropdownMenu>
+      </DropdownMenu> */}
     </Dropdown>
   );
 };

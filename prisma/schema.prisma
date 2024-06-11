@@ -100,6 +100,16 @@ model Bank_Info {
   routNumber   String
 }
 
+model Monthly_Rent_Record {
+  id            String @id @default(auto()) @map("_id") @db.ObjectId
+  userId        String
+  user          User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  payMonthYear  String
+  rentPaid      String
+  remainingRent String
+  totalRent     String
+}
+
 model Membership_Info {
   id                   String @id @default(auto()) @map("_id") @db.ObjectId
   userId               String
@@ -120,15 +130,7 @@ model Membership_Plans {
   membershipAmenities String
 }
 
-model Monthly_Rent_Record {
-  id            String @id @default(auto()) @map("_id") @db.ObjectId
-  userId        String
-  user          User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  payMonthYear  String
-  rentPaid      String
-  remainingRent String
-  totalRent     String
-}
+
 
 model Referals {
   id           String @id @default(auto()) @map("_id") @db.ObjectId

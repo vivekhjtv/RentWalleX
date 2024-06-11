@@ -283,7 +283,6 @@ export const LoginSchema = z.object({
 
   export const ReferalToSchema = z.object({
     referToEmail: z.string().min(1, 'Email is required').email('Invalid Email address'),
-  
   });
 
 

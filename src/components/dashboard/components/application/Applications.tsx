@@ -177,7 +177,7 @@ export default function Form() {
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
           >
-            <h2 className='text-xl font-semibold leading-7 text-gray-900'>
+            <h2 className='text-xl font-semibold leading-7 text-gray-900 dark:text-white'>
               Personal Information
             </h2>
           
@@ -185,7 +185,7 @@ export default function Form() {
               <div className='sm:col-span-4'>
                 <label
                   htmlFor='firstName'
-                  className='block text-sm font-medium leading-6 text-gray-900'
+                  className='block text-sm font-medium leading-6 text-gray-900 dark:text-white'
                 >
                   First Name
                 </label>
@@ -195,7 +195,7 @@ export default function Form() {
                     id='firstname'
                     {...register('firstName')}
                     autoComplete='given-name'
-                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                   />
                   {errors.firstName?.message && (
                     <p className='mt-2 text-sm text-red-400'>
@@ -208,7 +208,7 @@ export default function Form() {
               <div className='sm:col-span-4'>
                 <label
                   htmlFor='lastName'
-                  className='block text-sm font-medium leading-6 text-gray-900'
+                  className='block text-sm font-medium leading-6 text-gray-900 dark:text-white'
                 >
                   Last name
                 </label>
@@ -218,7 +218,7 @@ export default function Form() {
                     id='lastName'
                     {...register('lastName')}
                     autoComplete='family-name'
-                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                   />
                   {errors.lastName?.message && (
                     <p className='mt-2 text-sm text-red-400'>
@@ -231,7 +231,7 @@ export default function Form() {
               <div className='sm:col-span-4'>
                 <label
                   htmlFor='email'
-                  className='block text-sm font-medium leading-6 text-gray-900'
+                  className='block text-sm font-medium leading-6 text-gray-900 dark:text-white'
                 >
                   Email address
                 </label>
@@ -241,7 +241,7 @@ export default function Form() {
                     type='email'
                     {...register('email')}
                     autoComplete='email'
-                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                   />
                   {errors.email?.message && (
                     <p className='mt-2 text-sm text-red-400'>
@@ -254,7 +254,7 @@ export default function Form() {
               <div className='sm:col-span-4'>
                 <label
                   htmlFor='phonenumber'
-                  className='block text-sm font-medium leading-6 text-gray-900'
+                  className='block text-sm font-medium leading-6 text-gray-900 dark:text-white'
                 >
                   Phone Number
                 </label>
@@ -264,7 +264,7 @@ export default function Form() {
                     type='number'
                     {...register('phonenumber')}
                     autoComplete='phonenumber'
-                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                   />
                   {errors.phonenumber?.message && (
                     <p className='mt-2 text-sm text-red-400'>
@@ -278,7 +278,7 @@ export default function Form() {
               <div className='col-span-4'>
                 <label
                   htmlFor='street'
-                  className='block text-sm font-medium leading-6 text-gray-900'
+                  className='block text-sm font-medium leading-6 text-gray-900 dark:text-white'
                 >
                   Street address
                 </label>
@@ -288,7 +288,7 @@ export default function Form() {
                     id='street'
                     {...register('street')}
                     autoComplete='street-address'
-                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                   />
                   {errors.street?.message && (
                     <p className='mt-2 text-sm text-red-400'>
@@ -302,7 +302,7 @@ export default function Form() {
               <div className='sm:col-span-1/2 sm:col-start-1'>
                 <label
                   htmlFor='city'
-                  className='block text-sm font-medium leading-6 text-gray-900'
+                  className='block text-sm font-medium leading-6 text-gray-900 dark:text-white'
                 >
                   City
                 </label>
@@ -312,7 +312,7 @@ export default function Form() {
                     id='city'
                     {...register('city')}
                     autoComplete='address-level2'
-                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                   />
                   {errors.city?.message && (
                     <p className='mt-2 text-sm text-red-400'>
@@ -325,7 +325,7 @@ export default function Form() {
               <div className='sm:col-span-1/2'>
                 <label
                   htmlFor='state'
-                  className='block text-sm font-medium leading-6 text-gray-900'
+                  className='block text-sm font-medium leading-6 text-gray-900 dark:text-white'
                 >
                   State / Province
                 </label>
@@ -335,7 +335,7 @@ export default function Form() {
                     id='state'
                     {...register('state')}
                     autoComplete='address-level1'
-                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                   />
                   {errors.state?.message && (
                     <p className='mt-2 text-sm text-red-400'>
@@ -348,7 +348,7 @@ export default function Form() {
               <div className='sm:col-span-1/2'>
                 <label
                   htmlFor='zip'
-                  className='block text-sm font-medium leading-6 text-gray-900'
+                  className='block text-sm font-medium leading-6 text-gray-900 dark:text-white'
                 >
                   ZIP / Postal code
                 </label>
@@ -358,7 +358,7 @@ export default function Form() {
                     id='zip'
                     {...register('zip')}
                     autoComplete='postal-code'
-                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                   />
                   {errors.zip?.message && (
                     <p className='mt-2 text-sm text-red-400'>
@@ -372,7 +372,7 @@ export default function Form() {
               <div className='sm:col-span-1/2'>
                 <label
                   htmlFor='country'
-                  className='block text-sm font-medium leading-6 text-gray-900'
+                  className='block text-sm font-medium leading-6 text-gray-900 dark:text-white'
                 >
                   Country
                 </label>
@@ -381,7 +381,7 @@ export default function Form() {
                     id='country'
                     {...register('country')}
                     autoComplete='country-name'
-                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6'
+                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6'
                   >
                     <option value="Canada">Canada</option>
                     <option value="Unitedstate">United States</option>
@@ -400,7 +400,7 @@ export default function Form() {
                   <div>
                   <label
                   htmlFor='identification'
-                  className='block text-sm font-medium leading-6 text-gray-900'
+                  className='block text-sm font-medium leading-6 text-gray-900 dark:text-white'
                 >
                   Identification
                 </label>
@@ -419,7 +419,7 @@ export default function Form() {
                     autoComplete='postal-code'
                     // {...register('identification')}
 
-                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                   />
                   </ div>
                   <div>
@@ -447,7 +447,7 @@ export default function Form() {
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
           >
-            <h2 className='text-xl font-semibold leading-7 text-gray-900'>
+            <h2 className='text-xl font-semibold leading-7 text-gray-900 dark:text-white'>
               Employment Detail
             </h2>
 
@@ -456,7 +456,7 @@ export default function Form() {
             <div className='sm:col-span-4'>
                 <label
                   htmlFor='currentEmployer'
-                  className='block text-sm font-medium leading-6 text-gray-900'
+                  className='block text-sm font-medium leading-6 text-gray-900 dark:text-white'
                 >
                   Current Employer:
                 </label>
@@ -466,7 +466,7 @@ export default function Form() {
                     type='text'
                     {...register('currentEmployer')}
                     autoComplete='currentEmployer'
-                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                   />
                   {errors.currentEmployer?.message && (
                     <p className='mt-2 text-sm text-red-400'>
@@ -479,7 +479,7 @@ export default function Form() {
               <div className='sm:col-span-4'>
                 <label
                   htmlFor='jobTitle'
-                  className='block text-sm font-medium leading-6 text-gray-900'
+                  className='block text-sm font-medium leading-6 text-gray-900 dark:text-white'
                 >
                   Job Title:
                 </label>
@@ -489,7 +489,7 @@ export default function Form() {
                     type='text'
                     {...register('jobTitle')}
                     autoComplete='jobTitle'
-                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                   />
                   {errors.jobTitle?.message && (
                     <p className='mt-2 text-sm text-red-400'>
@@ -503,7 +503,7 @@ export default function Form() {
               <div className='sm:col-span-4'>
                 <label
                   htmlFor='empStatus'
-                  className='block text-sm font-medium leading-6 text-gray-900'
+                  className='block text-sm font-medium leading-6 text-gray-900 dark:text-white'
                 >
                  Employment Status (Full-time/Part-time)
                 </label>
@@ -512,7 +512,7 @@ export default function Form() {
                     id='empStatus'
                     {...register('empStatus')}
                     autoComplete='empStatus'
-                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                   >
                     <option value="fullTime">Full-time</option>
                     <option value="PartTime">Part-time</option>
@@ -528,7 +528,7 @@ export default function Form() {
               <div className='sm:col-span-4'>
                 <label
                   htmlFor='monthlyIncome'
-                  className='block text-sm font-medium leading-6 text-gray-900'
+                  className='block text-sm font-medium leading-6 text-gray-900 dark:text-white'
                 >
                  Monthly Income Before Taxes
                 </label>
@@ -538,7 +538,7 @@ export default function Form() {
                     type='text'
                     {...register('monthlyIncome')}
                     autoComplete='jobTitle'
-                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                   />
                   {errors.monthlyIncome?.message && (
                     <p className='mt-2 text-sm text-red-400'>
@@ -551,7 +551,7 @@ export default function Form() {
               <div className='sm:col-span-4'>
                 <label
                   htmlFor='payFreq'
-                  className='block text-sm font-medium leading-6 text-gray-900'
+                  className='block text-sm font-medium leading-6 text-gray-900 dark:text-white'
                 >
                  Payment Freequency (Weekly, Bi-weekly, Monthly)
                 </label>
@@ -560,7 +560,7 @@ export default function Form() {
                     id='payFreq'
                     {...register('payFreq')}
                     autoComplete='jobTitle'
-                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                   >
                     <option value="Weekly">Weekly</option>
                     <option value="Biweekly">Bi-weekly</option>
@@ -585,14 +585,14 @@ export default function Form() {
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
           >
-             <h2 className='text-xl font-semibold leading-7 text-gray-900'>
+             <h2 className='text-xl font-semibold leading-7 text-gray-900 dark:text-white'>
               Rental Detail
             </h2>
                         <div className='mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6'>
             <div className='sm:col-span-4'>
                 <label
                   htmlFor='propAddress'
-                  className='block text-sm font-medium leading-6 text-gray-900'
+                  className='block text-sm font-medium leading-6 text-gray-900 dark:text-white'
                 >
                   Rental Property Address
                 </label>
@@ -602,7 +602,7 @@ export default function Form() {
                     type='text'
                     {...register('propAddress')}
                     autoComplete='propAddress'
-                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                   />
                   {errors.propAddress?.message && (
                     <p className='mt-2 text-sm text-red-400'>
@@ -615,7 +615,7 @@ export default function Form() {
               <div className='sm:col-span-4'>
                 <label
                   htmlFor='rentAmt'
-                  className='block text-sm font-medium leading-6 text-gray-900'
+                  className='block text-sm font-medium leading-6 text-gray-900 dark:text-white'
                 >
                   Current Monthly Rent Amount
                 </label>
@@ -625,7 +625,7 @@ export default function Form() {
                     type='text'
                     {...register('rentAmt')}
                     autoComplete='rentAmt'
-                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                   />
                   {errors.rentAmt?.message && (
                     <p className='mt-2 text-sm text-red-400'>
@@ -639,7 +639,7 @@ export default function Form() {
               <div className='sm:col-span-4'>
                 <label
                   htmlFor='managerName'
-                  className='block text-sm font-medium leading-6 text-gray-900'
+                  className='block text-sm font-medium leading-6 text-gray-900 dark:text-white'
                 >
                  Property Manager Name: (If applicable)
                 </label>
@@ -649,7 +649,7 @@ export default function Form() {
                     type='text'
                     {...register('managerName')}
                     autoComplete='managerName'
-                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                   />
                   {errors.managerName?.message && (
                     <p className='mt-2 text-sm text-red-400'>
@@ -662,7 +662,7 @@ export default function Form() {
               <div className='sm:col-span-4'>
                 <label
                   htmlFor='manageCompany'
-                  className='block text-sm font-medium leading-6 text-gray-900'
+                  className='block text-sm font-medium leading-6 text-gray-900 dark:text-white'
                 >
                  Property Management Company:
                 </label>
@@ -672,7 +672,7 @@ export default function Form() {
                     type='text'
                     {...register('manageCompany')}
                     autoComplete='jobTitle'
-                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                   />
                   {errors.manageCompany?.message && (
                     <p className='mt-2 text-sm text-red-400'>
@@ -685,7 +685,7 @@ export default function Form() {
               <div className='sm:col-span-4'>
                 <label
                   htmlFor='payMethod'
-                  className='block text-sm font-medium leading-6 text-gray-900'
+                  className='block text-sm font-medium leading-6 text-gray-900 dark:text-white'
                 >
                  How do you currently pay your rent ( E-transfer,
 Bank, Cash, Cheque):
@@ -696,7 +696,7 @@ Bank, Cash, Cheque):
                     id='payMethod'
                     {...register('payMethod')}
                     autoComplete='jobTitle'
-                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                   >
                     <option value="etransfer">E-transfer</option>
                     <option value="bank">Bank</option>
@@ -724,7 +724,7 @@ Bank, Cash, Cheque):
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
           >
-              <h2 className='text-xl font-semibold leading-7 text-gray-900'>
+              <h2 className='text-xl font-semibold leading-7 text-gray-900 dark:text-white'>
               Financial Information
             </h2>
                     <div className='mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6'>
@@ -736,7 +736,7 @@ Bank, Cash, Cheque):
                     <div className='sm:col-span-4'>
                 <label
                   htmlFor='bankName'
-                  className='block text-sm font-medium leading-6 text-gray-900'
+                  className='block text-sm font-medium leading-6 text-gray-900 dark:text-white'
                 >
                 Bank Name
 
@@ -747,7 +747,7 @@ Bank, Cash, Cheque):
                     type='text'
                     {...register('bankName')}
                     autoComplete='jobTitle'
-                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                   />
                   {errors.bankName?.message && (
                     <p className='mt-2 text-sm text-red-400'>
@@ -760,7 +760,7 @@ Bank, Cash, Cheque):
               <div className='sm:col-span-4'>
                 <label
                   htmlFor='acctHoldName'
-                  className='block text-sm font-medium leading-6 text-gray-900'
+                  className='block text-sm font-medium leading-6 text-gray-900 dark:text-white'
                 >
                 Account Holder’s Name
 
@@ -771,7 +771,7 @@ Bank, Cash, Cheque):
                     type='text'
                     {...register('acctHoldName')}
                     autoComplete='jobTitle'
-                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                   />
                   {errors.acctHoldName?.message && (
                     <p className='mt-2 text-sm text-red-400'>
@@ -784,7 +784,7 @@ Bank, Cash, Cheque):
               <div className='sm:col-span-4'>
                 <label
                   htmlFor='acctNumber'
-                  className='block text-sm font-medium leading-6 text-gray-900'
+                  className='block text-sm font-medium leading-6 text-gray-900 dark:text-white'
                 >
                  Account Number
 
@@ -795,7 +795,7 @@ Bank, Cash, Cheque):
                     type='text'
                     {...register('acctNumber')}
                     autoComplete='jobTitle'
-                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                   />
                   {errors.acctNumber?.message && (
                     <p className='mt-2 text-sm text-red-400'>
@@ -810,7 +810,7 @@ Bank, Cash, Cheque):
                 <div className='flex-2 me-3'>
                 <label
                   htmlFor='routNumber'
-                  className='block text-sm font-medium leading-6 text-gray-900'
+                  className='block text-sm font-medium leading-6 text-gray-900 dark:text-white'
                 >
                 Institution Number
 
@@ -821,7 +821,7 @@ Bank, Cash, Cheque):
                     type='text'
                     {...register('instNumber')}
                     autoComplete='instNumber'
-                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                   />
                   {errors.instNumber?.message && (
                     <p className='mt-2 text-sm text-red-400'>
@@ -834,7 +834,7 @@ Bank, Cash, Cheque):
                 <div className='flex-1'>
                 <label
                   htmlFor='routNumber'
-                  className='block text-sm font-medium leading-6 text-gray-900'
+                  className='block text-sm font-medium leading-6 text-gray-900 dark:text-white'
                 >
                 Transit Number
 
@@ -845,7 +845,7 @@ Bank, Cash, Cheque):
                     type='text'
                     {...register('routNumber')}
                     autoComplete='jobTitle'
-                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                   />
                   {errors.routNumber?.message && (
                     <p className='mt-2 text-sm text-red-400'>
@@ -863,7 +863,7 @@ Bank, Cash, Cheque):
                   <div>
                   <label
                   htmlFor='identification'
-                  className='block text-sm font-medium leading-6 text-gray-900'
+                  className='block text-sm font-medium leading-6 text-gray-900 dark:text-white'
                 >
                   Attach a direct deposit form or a cheque
                 </label>
@@ -880,7 +880,7 @@ Bank, Cash, Cheque):
                     }}
                     // {...register('identification')}
                     autoComplete='postal-code'
-                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                   />
                   </ div>
                   <div>
@@ -899,7 +899,7 @@ Bank, Cash, Cheque):
 
 
 
-              <div className='sm:col-span-4 text-xl font-semibold leading-7 text-gray-900'>
+              <div className='sm:col-span-4 text-xl font-semibold leading-7 text-gray-900 dark:text-white'>
                 <p>Membership Selection</p>
               </div>
               <div className='sm:col-span-4 '>
@@ -955,7 +955,7 @@ Bank, Cash, Cheque):
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
           >
-              <h2 className='text-xl font-semibold leading-7 text-gray-900'>
+              <h2 className='text-xl font-semibold leading-7 text-gray-900 dark:text-white'>
               Additional Information
             </h2>
             <div className='mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6'>
@@ -963,7 +963,7 @@ Bank, Cash, Cheque):
             <div className='sm:col-span-4'>
                 <label
                   htmlFor='hearAbtRx'
-                  className='block text-sm font-medium leading-6 text-gray-900'
+                  className='block text-sm font-medium leading-6 text-gray-900 dark:text-white'
                 >
                 How do you hear about Rentwallex
 
@@ -973,7 +973,7 @@ Bank, Cash, Cheque):
                     id='hearAbtRx'
                     {...register('hearAbtRx')}
                     autoComplete='jobTitle'
-                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
+                    className='block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6'
                   >
                     <option value="wordofmouth">Word of Mouth</option>
                     <option value="rentalcompany">Rental Company</option>
@@ -989,7 +989,7 @@ Bank, Cash, Cheque):
                 </div>
               </div>
 
-              <h2 className='aggrement sm:col-span-4 text-xl font-semibold leading-7 text-gray-900'>Aggrements and Consent:</h2>
+              <h2 className='aggrement sm:col-span-4 text-xl font-semibold leading-7 text-gray-900 dark:text-white'>Aggrements and Consent:</h2>
 
             <div className='aggrement sm:col-span-4'>
               <input  type="checkbox"
@@ -1043,7 +1043,7 @@ team will review it and contact you to proceed with the onboarding process.
 
 {currentStep === 5 && (
           <>
-            <h2 className='text-base font-semibold leading-7 text-gray-900'>
+            <h2 className='text-base font-semibold leading-7 text-gray-900 dark:text-white'>
               Complete
             </h2>
             <p className='mt-1 text-sm leading-6 text-gray-600'>

@@ -1,5 +1,4 @@
 
-
 import React from 'react'
 import { signOut } from '../../../auth';
 
@@ -8,7 +7,8 @@ const Signout = () => {
     <>
     <a href="#" className="logout">
   <form action={async()=>{
-"use server";
+
+"use server"
 
 await signOut();
 }}>

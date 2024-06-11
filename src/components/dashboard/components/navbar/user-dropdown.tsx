@@ -1,3 +1,4 @@
+
 import {
   Avatar,
   Dropdown,
@@ -10,17 +11,28 @@ import {
 import React from "react";
 import { DarkModeSwitch } from "./darkmodeswitch";
 
+
 export const UserDropdown = () => {
+
+ 
+
   return (
     <Dropdown>
       <NavbarItem>
         <DropdownTrigger>
+          <div className="columns-2">
           <Avatar
             as="button"
             color="secondary"
             size="md"
             src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
-          />
+            className="col-6">
+          </Avatar>
+          <h5 className="col-6">
+          Zoey
+          </h5>
+          </div>
+      
         </DropdownTrigger>
       </NavbarItem>
       <DropdownMenu
@@ -41,7 +53,7 @@ export const UserDropdown = () => {
         <DropdownItem key="configurations">Configurations</DropdownItem>
         <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
         <DropdownItem key="logout" color="danger" className="text-danger ">
-          Log Out
+         Sign out
         </DropdownItem>
         <DropdownItem key="switch">
           <DarkModeSwitch />
