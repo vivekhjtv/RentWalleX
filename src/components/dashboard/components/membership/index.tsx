@@ -2,6 +2,7 @@
 import { Button, Input } from "@nextui-org/react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import { payment } from "../../../../../actions/payment";
 // import { DotsIcon } from "@/components/icons/accounts/dots-icon";
 // import { ExportIcon } from "@/components/icons/accounts/export-icon";
 // import { InfoIcon } from "@/components/icons/accounts/info-icon";
@@ -23,6 +24,11 @@ import Modal from "@/components/auth/modal";
 
 export const Membership = () => {
   const [modal,setModal] = useState(true);
+
+    payment().then((data) => {
+      console.log(data);
+    });
+
   // useEffect(()=>{
   //   <Modal onClose={()=>setModal(false)}/>
   // },[])

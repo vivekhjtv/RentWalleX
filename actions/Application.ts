@@ -27,30 +27,50 @@ export const application = async (values:any) =>{
       return {error:"Email already exist"}
     }
     const name = firstName + ' ' + lastName;
-
-    await db.application.create({
+    const propName = "propName";
+    await db.user_Info.create({
         data:{
-          name,
-          email,
+        name,
+        email,
         country,
         street,city,
         state,zip,
         phonenumber,
-        currentEmployer,jobTitle,
+        currentEmployer,
+        jobTitle,
         empStatus,
         monthlyIncome,
         payFreq,
-        propAddress,rentAmt,
-        manageCompany,managerName,
-        payMethod,
-        bankName,
-        acctHoldName,
-        acctNumber,
-        instNumber,
-        routNumber,
         hearAbtRx,
+        Bank_Info:{
+          create:[
+            {
+              bankName,
+              acctHoldName,
+              acctNumber,
+              instNumber,
+              routNumber
+            }
+          ]
         },
+        Property_Info:{
+          create:[
+            {
+              propName,
+              propAddress,
+              rentAmt,
+              manageCompany,
+              managerName,
+              payMethod
+            }
+          ]
+        }
+      }
+        
+        ,
       });
+
+      
 
     
 //   if (email) {

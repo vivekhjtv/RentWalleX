@@ -21,7 +21,7 @@ export const CollapseItems = ({ icon, items, title }: Props) => {
           classNames={{
             indicator: "data-[open=true]:-rotate-180",
             trigger:
-              "py-0 min-h-[44px] hover:border-solid hover:border-2 hover:border-lime-300 rounded-xl active:scale-[0.98] transition-transform px-3.5",
+              "py-0 min-h-[44px] hover:border-solid hover:border-2 hover:border-lime-300 rounded-xl active:scale-[0.98] active:bg-lime-50 active:border-solid active:border-2 active:border-lime-300 transition-transform px-3.5",
 
             title:
               "px-0 flex text-base gap-2 h-full items-center cursor-pointer",

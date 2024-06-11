@@ -24,11 +24,6 @@ model User {
   phone                 String?
   isTwoFactorEnabled    Boolean                @default(false)
   twoFactorConfirmation TwoFactorConfirmation?
-  Property_Info         Property_Info[]
-  Bank_Info             Bank_Info[]
-  Membership_Info       Membership_Info[]
-  Monthly_Rent_Record   Monthly_Rent_Record[]
-  Referals              Referals[]
 }
 
 model Application {
@@ -60,27 +55,32 @@ model Application {
 }
 
 model User_Info {
-  id              String  @id @default(auto()) @map("_id") @db.ObjectId
-  name            String?
-  email           String? @unique
-  country         String?
-  street          String?
-  city            String?
-  state           String?
-  zip             String?
-  phonenumber     String?
-  currentEmployer String?
-  jobTitle        String?
-  empStatus       String?
-  monthlyIncome   String?
-  payFreq         String?
-  hearAbtRx       String?
+  id                  String                @id @default(auto()) @map("_id") @db.ObjectId
+  name                String?
+  email               String?               @unique
+  country             String?
+  street              String?
+  city                String?
+  state               String?
+  zip                 String?
+  phonenumber         String?
+  currentEmployer     String?
+  jobTitle            String?
+  empStatus           String?
+  monthlyIncome       String?
+  payFreq             String?
+  hearAbtRx           String?
+  Property_Info       Property_Info[]
+  Bank_Info           Bank_Info[]
+  Monthly_Rent_Record Monthly_Rent_Record[]
+  Membership_Info     Membership_Info[]
+  Referals            Referals[]
 }
 
 model Property_Info {
-  id            String @id @default(auto()) @map("_id") @db.ObjectId
-  userId        String
-  user          User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  userId        String    @db.ObjectId
+  user          User_Info @relation(fields: [userId], references: [id], onDelete: Cascade)
   propName      String
   propAddress   String
   rentAmt       String
@@ -90,9 +90,9 @@ model Property_Info {
 }
 
 model Bank_Info {
-  id           String @id @default(auto()) @map("_id") @db.ObjectId
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
   userId       String
-  user         User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user         User_Info @relation(fields: [userId], references: [id], onDelete: Cascade)
   bankName     String
   acctHoldName String
   acctNumber   String
@@ -101,9 +101,9 @@ model Bank_Info {
 }
 
 model Monthly_Rent_Record {
-  id            String @id @default(auto()) @map("_id") @db.ObjectId
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
   userId        String
-  user          User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user          User_Info @relation(fields: [userId], references: [id], onDelete: Cascade)
   payMonthYear  String
   rentPaid      String
   remainingRent String
@@ -111,13 +111,13 @@ model Monthly_Rent_Record {
 }
 
 model Membership_Info {
-  id                   String @id @default(auto()) @map("_id") @db.ObjectId
+  id                   String    @id @default(auto()) @map("_id") @db.ObjectId
   userId               String
-  user                 User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user                 User_Info @relation(fields: [userId], references: [id], onDelete: Cascade)
   membershipType       String
   membershipAmt        String
   membershipStatus     String
-  membershipStartDate  DateTime? 
+  membershipStartDate  DateTime?
   membershipExpireDate DateTime?
   membershipDuration   String
 }
@@ -130,12 +130,10 @@ model Membership_Plans {
   membershipAmenities String
 }
 
-
-
 model Referals {
-  id           String @id @default(auto()) @map("_id") @db.ObjectId
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
   userId       String
-  user         User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user         User_Info @relation(fields: [userId], references: [id], onDelete: Cascade)
   referToEmail String
   referCode    String
   referAmt     String

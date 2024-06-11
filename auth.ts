@@ -59,27 +59,27 @@ export const {
   
         return true;
       },
-        // async session({token,session}){
+        async session({token,session}){
            
-        //     if(token.sub && session.user){
-        //         session.user.id = token.sub;
-        //     }
+            if(token.sub && session.user){
+                session.user.id = token.sub;
+            }
 
-        //     if (token.role && session.user) {
-        //       session.user.role = token.role as Userrole;
-        //     }
+            if (token.role && session.user) {
+              session.user.role = token.role as Userrole;
+            }
             
-        //     return session;
-        // }
-        // ,async jwt({token}){
-        //     if (!token.sub) return token;
+            return session;
+        }
+        ,async jwt({token}){
+            if (!token.sub) return token;
 
-        //     const existingUser = await getUserById(token.sub);
+            const existingUser = await getUserById(token.sub);
       
-        //     if (!existingUser) return token;
-        //     token.role = existingUser.role;
-        //     return token;
-        // }
+            if (!existingUser) return token;
+            token.role = existingUser.role;
+            return token;
+        }
     },
     adapter: PrismaAdapter(db),
     session: { strategy: "jwt" },
