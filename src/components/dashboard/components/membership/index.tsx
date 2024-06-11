@@ -28,21 +28,26 @@ export const Membership = () => {
   // },[])
   return (
     <>
-      <h1>Membership</h1>    
+      <h1 className="m-6">Membership</h1>    
+<a href="#" className="block max-w-sm p-6 m-6 bg-green-600 border border-gray-200 rounded-lg shadow hover:bg-green-300 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+<h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Zoey</h5>
+<h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">**** **** **** 3889</h5>
+<p className="font-normal text-gray-700 dark:text-gray-400">Elite Membership</p>
+</a>
 
-<h2>Select Membership Plan</h2>
+<h2 className="m-6">Select Membership Plan</h2>
 <div className="grid grid-cols-3 gap-4">
-<a href="#" className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+<a href="#" className="block max-w-sm p-6 m-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
 
-<h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-<p className="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+<h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">One-Time Payment</h5>
+<p className="font-normal text-gray-700 dark:text-gray-400">Charge users a one-time payment fee to access the content.</p>
 </a>
-<a href="#" className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+<a href="#" className="block max-w-sm p-6 m-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
 
-<h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-<p className="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+<h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Membership</h5>
+<p className="font-normal text-gray-700 dark:text-gray-400">Split the full bundle price over several monthly payments.</p>
 </a>
-<a href="#" className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+<a href="#" className="block max-w-sm p-6 m-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
 
 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
 <p className="font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
