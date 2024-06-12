@@ -1,5 +1,5 @@
-import React from "react";
-import { auth, signOut } from "../../../../auth";
+import React from 'react';
+import { auth, signOut } from '../../../../auth';
 // import '../../../../style.css'
 
 const Settings = async () => {
@@ -152,8 +152,8 @@ const Settings = async () => {
           
         </div>
         </section> */}
-        <h2 className="text-xl font-semibold text-gray-900">Settings</h2>
-        <h5 className="font-semibold mt-10 text-gray-900">Change Password</h5>
+        <h2 className="text-3xl font-semibold text-gray-900 mt-8">Settings</h2>
+        <h5 className="font-semibold mt-6 text-gray-900">Change Password</h5>
         <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <div className="sm:col-span-4">
             <label

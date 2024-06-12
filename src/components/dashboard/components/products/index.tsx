@@ -1,7 +1,7 @@
-"use client";
-import { Button, Input } from "@nextui-org/react";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
+'use client';
+import { Button, Input } from '@nextui-org/react';
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
 // import { DotsIcon } from "@/components/icons/accounts/dots-icon";
 // import { ExportIcon } from "@/components/icons/accounts/export-icon";
 // import { InfoIcon } from "@/components/icons/accounts/info-icon";
@@ -11,36 +11,36 @@ import React, { useEffect, useState } from "react";
 // import { SettingsIcon } from "@/components/icons/sidebar/settings-icon";
 // import { TableWrapper } from "@/components/table/table";
 // import { AddUser } from "./add-user";
-import { HouseIcon } from "../icons/breadcrumb/house-icon";
-import { UsersIcon } from "../icons/breadcrumb/users-icon";
-import { TrashIcon } from "@radix-ui/react-icons";
-import { DotsIcon } from "../icons/accounts/dots-icon";
-import { ExportIcon } from "../icons/accounts/export-icon";
-import { InfoIcon } from "../icons/accounts/info-icon";
-import { SettingsIcon } from "../icons/sidebar/settings-icon";
-import { TableWrapper } from "../table/table";
-import Modal from "@/components/auth/modal";
+import { HouseIcon } from '../icons/breadcrumb/house-icon';
+import { UsersIcon } from '../icons/breadcrumb/users-icon';
+import { TrashIcon } from '@radix-ui/react-icons';
+import { DotsIcon } from '../icons/accounts/dots-icon';
+import { ExportIcon } from '../icons/accounts/export-icon';
+import { InfoIcon } from '../icons/accounts/info-icon';
+import { SettingsIcon } from '../icons/sidebar/settings-icon';
+import { TableWrapper } from '../table/table';
+import Modal from '@/components/auth/modal';
 // import '../../../../../style.css'
 
 export const Products = () => {
-  const [modal,setModal] = useState(true);
+  const [modal, setModal] = useState(true);
   const [email, setEmail] = useState('');
   const [referralCode, setReferralCode] = useState('');
   const [error, setError] = useState('');
   const [totalRewards, setTotalRewards] = useState(100); // Replace with actual data source
 
-//   const handleEmailChange = (e) => {
-//     setEmail(e.target.value);
-//   };
+  //   const handleEmailChange = (e) => {
+  //     setEmail(e.target.value);
+  //   };
 
-//   const handleReferralCodeChange = (e) => {
-//     setReferralCode(e.target.value);
-//   };
+  //   const handleReferralCodeChange = (e) => {
+  //     setReferralCode(e.target.value);
+  //   };
 
-//   const validateEmail = (email) => {
-//     const re = /\S+@\S+\.\S+/;
-//     return re.test(email);
-//   };
+  //   const validateEmail = (email) => {
+  //     const re = /\S+@\S+\.\S+/;
+  //     return re.test(email);
+  //   };
 
   const handleInvite = () => {
     // if (validateEmail(email)) {
@@ -58,80 +58,82 @@ export const Products = () => {
   };
   return (
     <>
-    <div className="container">
-        <h1 className="text-xl font-semibold text-gray-900">Refer & Earn</h1>
-        <h3 className="font-semibold mt-10 text-gray-900">Your referral code: <strong>ABC123</strong></h3>
+      <div className="container">
+        <h1 className="text-3xl font-semibold text-gray-900 mt-8">
+          Refer & Earn
+        </h1>
+        <h3 className="font-semibold mt-10 text-gray-900">
+          Your referral code: <strong>RENTX007</strong>
+        </h3>
         <div className="mt-5 mb-8 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-            <div className="sm:col-span-4">
-                <label
-                htmlFor="firstName"
-                className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                Invite your friends through email:
-                </label>
-                <div className="mb-3">
-                <input
-                    type="email"
-                    value={email}
-                    id="email"
-                    // onChange={handleEmailChange}
-                    autoComplete="given-name"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
-                />
-                {/* {errors.firstName?.message && (
+          <div className="sm:col-span-4">
+            <label
+              htmlFor="firstName"
+              className="block text-sm font-medium leading-6 text-gray-900"
+            >
+              Invite your friends through email:
+            </label>
+            <div className="mb-3">
+              <input
+                type="email"
+                value={email}
+                id="email"
+                // onChange={handleEmailChange}
+                autoComplete="given-name"
+                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+              />
+              {/* {errors.firstName?.message && (
                     <p className='mt-2 text-sm text-red-400'>
                     {errors.firstName.message}
                     </p>
                 )} */}
-                </div>
-                {/* {error && <p style={{ color: 'red' }}>{error}</p>} */}
-                <button onClick={handleInvite} className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-1 px-2 my-1 border border-gray-400 rounded shadow">
-                Invite
-                </button>
             </div>
+            {/* {error && <p style={{ color: 'red' }}>{error}</p>} */}
+            <button
+              onClick={handleInvite}
+              className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-1 px-2 my-1 border border-gray-400 rounded shadow"
+            >
+              Invite
+            </button>
+          </div>
         </div>
         <h3 className="font-semibold mt-10 text-gray-900">Your rewards</h3>
         <p>$60</p>
         <div className="mt-5 mb-8 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-            <div className="sm:col-span-4">
-                <label
-                htmlFor="firstName"
-                className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                Invited by a friend? Enter referral code:
-                </label>
-                <div className="mb-3">
-                <input
-                    type="text"
-                    value={referralCode}
-                    // onChange={handleReferralCodeChange}
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
-                />
-                {/* {errors.firstName?.message && (
+          <div className="sm:col-span-4">
+            <label
+              htmlFor="firstName"
+              className="block text-sm font-medium leading-6 text-gray-900"
+            >
+              Invited by a friend? Enter referral code:
+            </label>
+            <div className="mb-3">
+              <input
+                type="text"
+                value={referralCode}
+                // onChange={handleReferralCodeChange}
+                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+              />
+              {/* {errors.firstName?.message && (
                     <p className='mt-2 text-sm text-red-400'>
                     {errors.firstName.message}
                     </p>
                 )} */}
-                </div>
-                {/* {error && <p style={{ color: 'red' }}>{error}</p>} */}
-                <button onClick={handleReferralSubmit} className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-1 px-2 my-1 border border-gray-400 rounded shadow">
-                Enter
-                </button>
             </div>
+            {/* {error && <p style={{ color: 'red' }}>{error}</p>} */}
+            <button
+              onClick={handleReferralSubmit}
+              className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-1 px-2 my-1 border border-gray-400 rounded shadow"
+            >
+              Enter
+            </button>
+          </div>
         </div>
-    </div>
-    {console.log(modal)}
-    
+      </div>
+      {console.log(modal)}
     </>
   );
 };
-
-
-
-
-
-
-
 
 // "use client";
 // import { useState } from 'react';
@@ -210,4 +212,3 @@ export const Products = () => {
 //     </>
 //   );
 // }
-
