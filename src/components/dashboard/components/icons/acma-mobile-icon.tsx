@@ -1,13 +1,14 @@
 import React from 'react';
 
-export const AcmeIcon = () => {
+export const AcmeIconMobile = () => {
   return (
     <svg
       version="1.1"
       viewBox="0 0 1600 680"
-      width="182"
-      height="80"
+      width="140"
+      height="60"
       xmlns="http://www.w3.org/2000/svg"
+      style={{ paddingLeft: '10px' }}
     >
       <path
         transform="translate(1240 39.6)"

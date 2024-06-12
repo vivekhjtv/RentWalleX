@@ -1,31 +1,26 @@
-"use client";
-import React, { useState } from "react";
-import dynamic from "next/dynamic";
-import { TableWrapper } from "../table/table";
-import { CardBalance1 } from "./card-balance1";
-import { CardBalance2 } from "./card-balance2";
-import { CardBalance3 } from "./card-balance3";
-import { CardAgents } from "./card-agents";
-import { CardTransactions } from "./card-transactions";
-import { Link } from "@nextui-org/react";
-import NextLink from "next/link";
-import Modal from "@/components/auth/modal";
-
+'use client';
+import React, { useState } from 'react';
+import dynamic from 'next/dynamic';
+import { TableWrapper } from '../table/table';
+import { CardBalance1 } from './card-balance1';
+import { CardBalance2 } from './card-balance2';
+import { CardBalance3 } from './card-balance3';
+import { CardAgents } from './card-agents';
+import { CardTransactions } from './card-transactions';
+import { Link } from '@nextui-org/react';
+import NextLink from 'next/link';
+import Modal from '@/components/auth/modal';
 
 const Chart = dynamic(
-  () => import("../charts/steam").then((mod) => mod.Steam),
+  () => import('../charts/steam').then((mod) => mod.Steam),
   {
     ssr: false,
   }
 );
 
 export const Content = () => (
-
-
-
-
   <div className="h-full lg:px-6">
-    <div className="flex justify-center gap-4 xl:gap-6 pt-3 px-4 lg:px-0  flex-wrap xl:flex-nowrap sm:pt-10 max-w-[90rem] mx-auto w-full">
+    <div className="flex justify-center gap-4 xl:gap-6 pt-3 px-4 lg:px-0  flex-wrap xl:flex-nowrap sm:pt-2 max-w-[90rem] mx-auto w-full">
       <div className="mt-6 gap-6 flex flex-col w-full">
         {/* Card Section Top */}
         <div className="flex flex-col gap-2">
@@ -58,7 +53,9 @@ export const Content = () => (
     {/* Table Latest Users */}
     <div className="flex flex-col border-solid border-4 border-lime-200  justify-center w-full lg:px-0 rounded-2xl  max-w-[90rem] mx-auto gap-3">
       <div className="flex p-5 flex-wrap justify-between">
-        <h3 className="text-center text-xl font-semibold">Recent Rent Payments</h3>
+        <h3 className="text-center text-xl font-semibold">
+          Recent Rent Payments
+        </h3>
         <Link
           href="/accounts"
           as={NextLink}
@@ -72,5 +69,4 @@ export const Content = () => (
       {/* <Modal isVisible={modal}/> */}
     </div>
   </div>
-
 );

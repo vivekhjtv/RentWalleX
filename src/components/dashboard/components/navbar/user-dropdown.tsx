@@ -1,43 +1,38 @@
-
 import {
-  Avatar,
   Dropdown,
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
-  Navbar,
   NavbarItem,
-} from "@nextui-org/react";
-import React from "react";
-import { DarkModeSwitch } from "./darkmodeswitch";
-
+} from '@nextui-org/react';
+import React from 'react';
+import { DarkModeSwitch } from './darkmodeswitch';
 
 export const UserDropdown = () => {
-
- 
-
   return (
     <Dropdown>
       <NavbarItem>
         <DropdownTrigger>
-          <div className="columns-2">
-          <Avatar
-            as="button"
-            color="secondary"
-            size="md"
-            src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
-            className="col-6">
-          </Avatar>
-          <h5 className="col-6">
-          Zoey
-          </h5>
+          <div className="relative grid select-none items-center whitespace-nowrap rounded-full text-xs font-bold uppercase">
+            <div className="absolute top-2/4 left-1.5 h-5 w-5 -translate-y-2/4">
+              <img
+                alt="Tania Andrew"
+                src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1480&amp;q=80"
+                className="relative inline-block h-full w-full -translate-x-0.5 !rounded-full  object-cover object-center"
+              />
+            </div>
+            <span className="ml-[30px]">
+              <p className="block font-sans text-sm antialiased font-medium leading-none capitalize">
+                Tania Andrew
+              </p>
+            </span>
           </div>
-      
         </DropdownTrigger>
       </NavbarItem>
       <DropdownMenu
         aria-label="User menu actions"
         onAction={(actionKey) => console.log({ actionKey })}
+        className="bg-white dark:bg-gray-800 text-black dark:text-white rounded-lg shadow-lg py-4 px-4 border border-gray-200 dark:border-gray-700"
       >
         <DropdownItem
           key="profile"
@@ -52,8 +47,8 @@ export const UserDropdown = () => {
         <DropdownItem key="system">System</DropdownItem>
         <DropdownItem key="configurations">Configurations</DropdownItem>
         <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
-        <DropdownItem key="logout" color="danger" className="text-danger ">
-         Sign out
+        <DropdownItem key="logout" color="danger" className="text-danger">
+          Signout
         </DropdownItem>
         <DropdownItem key="switch">
           <DarkModeSwitch />

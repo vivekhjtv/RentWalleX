@@ -1,5 +1,5 @@
-import React from "react";
-import { auth, signOut } from "../../../../auth";
+import React from 'react';
+import { auth, signOut } from '../../../../auth';
 // import '../../../../style.css'
 
 const Settings = async () => {
@@ -152,8 +152,8 @@ const Settings = async () => {
           
         </div>
         </section> */}
-        <h2 className="text-xl font-semibold text-gray-900">Settings</h2>
-        <h5 className="font-semibold mt-10 text-gray-900">Change Password</h5>
+        <h2 className="text-3xl font-semibold text-gray-900 mt-8">Settings</h2>
+        <h5 className="font-semibold mt-6 text-gray-900">Change Password</h5>
         <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <div className="sm:col-span-4">
             <label
@@ -221,17 +221,19 @@ const Settings = async () => {
             </button>
           </div>
         </div>
-        
-        <h5 className="font-semibold mt-10 text-gray-900">Notification Settings</h5>
+
+        <h5 className="font-semibold mt-10 text-gray-900">
+          Notification Settings
+        </h5>
         <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <div className="sm:col-span-4">
             <div className="flex mb-3">
-            <label
-              htmlFor="emailNotifications"
-              className="block text-sm font-medium leading-6 text-gray-900"
-            >
-              Email Notifications
-            </label>
+              <label
+                htmlFor="emailNotifications"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Email Notifications
+              </label>
               <input
                 type="checkbox"
                 id="emailNotifications"
@@ -246,11 +248,11 @@ const Settings = async () => {
               >
                 SMS Notifications
               </label>
-                <input
-                  type="checkbox"
-                  id="smsNotifications"
-                  className="rounded border-gray-300 text-sky-600 shadow-sm focus:ring-sky-600"
-                />
+              <input
+                type="checkbox"
+                id="smsNotifications"
+                className="rounded border-gray-300 text-sky-600 shadow-sm focus:ring-sky-600"
+              />
             </div>
 
             <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-1 px-2 my-1 border border-gray-400 rounded shadow">
