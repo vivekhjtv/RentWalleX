@@ -128,7 +128,7 @@ export default function Form() {
   return (
     <section className="application-section inset-1 flex flex-col justify-between p-10">
       {/* steps */}
-      <h2 className="text-3xl font-semibold text-gray-900 mb-8">
+      <h2 className="text-3xl font-semibold text-gray-900 mb-6">
         My Application
       </h2>
       <nav aria-label="Progress">
@@ -173,11 +173,11 @@ export default function Form() {
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
           >
-            <h2 className="text-xl font-semibold leading-7 text-gray-900 dark:text-white">
+            <h2 className="text-xl font-semibold leading-7 mt-4 text-gray-900 dark:text-white">
               Personal Information
             </h2>
 
-            <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+            <div className="mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
               <div className="sm:col-span-4">
                 <label
                   htmlFor="firstName"
