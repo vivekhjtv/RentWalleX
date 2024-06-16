@@ -12,7 +12,6 @@ import React, { useEffect, useState } from "react";
 // import { SettingsIcon } from "@/components/icons/sidebar/settings-icon";
 // import { TableWrapper } from "@/components/table/table";
 // import { AddUser } from "./add-user";
-<<<<<<< HEAD
 import { HouseIcon } from '../icons/breadcrumb/house-icon';
 import { UsersIcon } from '../icons/breadcrumb/users-icon';
 import { TrashIcon } from '@radix-ui/react-icons';
@@ -23,17 +22,6 @@ import { SettingsIcon } from '../icons/sidebar/settings-icon';
 import { TableWrapper } from '../table/table';
 import Modal from '@/components/auth/modal';
 import { userInfo } from '../../../../../actions/userInfo';
-=======
-import { HouseIcon } from "../icons/breadcrumb/house-icon";
-import { UsersIcon } from "../icons/breadcrumb/users-icon";
-import { TrashIcon } from "@radix-ui/react-icons";
-import { DotsIcon } from "../icons/accounts/dots-icon";
-import { ExportIcon } from "../icons/accounts/export-icon";
-import { InfoIcon } from "../icons/accounts/info-icon";
-import { SettingsIcon } from "../icons/sidebar/settings-icon";
-import { TableWrapper } from "../table/table";
-import Modal from "@/components/auth/modal";
->>>>>>> 209fc318b11cfd8564490cf8ef6359e5a6d2cd52
 
 export const Membership = () => {
   const [modal, setModal] = useState(true);
