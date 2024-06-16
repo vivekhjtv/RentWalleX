@@ -41,7 +41,7 @@ export const {
         console.log("userrr"+user);
         
   
-        const existingUser = await getUserById(user.id);
+        const existingUser = await getUserById(user.id);ß
   
         // Prevent sign in without email verification
         // if (!existingUser?.emailVerified) return false;

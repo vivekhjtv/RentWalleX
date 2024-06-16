@@ -51,12 +51,12 @@ import { LoginSchema } from "./schemas";
 import { getUserByEmail } from "@/data/user";
 import Modal from "@/components/auth/modal";
 
-export default {
+ export default {
   providers: [
     Google({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    }),
+    }), 
     Facebook({
       clientId: process.env.Facebook_CLIENT_ID,
       clientSecret: process.env.Facebook_CLIENT_SECRET,
@@ -89,4 +89,5 @@ export default {
         return null;
       }
   })],
+
 } satisfies NextAuthConfig

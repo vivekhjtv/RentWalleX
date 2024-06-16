@@ -21,13 +21,14 @@ import { InfoIcon } from '../icons/accounts/info-icon';
 import { SettingsIcon } from '../icons/sidebar/settings-icon';
 import { TableWrapper } from '../table/table';
 import Modal from '@/components/auth/modal';
+import { userInfo } from '../../../../../actions/userInfo';
 
 export const Membership = () => {
   const [modal, setModal] = useState(true);
 
-  // payment().then((data) => {
-  //   console.log(data);
-  // });
+  userInfo().then((data) => {
+    console.log(data);
+  });
 
   // useEffect(()=>{
   //   <Modal onClose={()=>setModal(false)}/>

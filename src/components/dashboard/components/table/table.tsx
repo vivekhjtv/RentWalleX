@@ -25,7 +25,7 @@ export const TableWrapper = () => {
             </TableColumn>
           )}
         </TableHeader>
-        <TableBody items={users}  className="gap-y-4">
+        <TableBody items={users}  >
          
           {(item: any) => (
             <TableRow className="bg-lime-100 mb-4" >

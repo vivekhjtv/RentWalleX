@@ -7,8 +7,12 @@ import {
 } from '@nextui-org/react';
 import React from 'react';
 import { DarkModeSwitch } from './darkmodeswitch';
+import { SignOut } from '../../../../../actions/signout';
 
 export const UserDropdown = () => {
+  const handleSignout = () => {
+    SignOut();
+}
   return (
     <Dropdown>
       <NavbarItem>
@@ -47,7 +51,7 @@ export const UserDropdown = () => {
         <DropdownItem key="system">System</DropdownItem>
         <DropdownItem key="configurations">Configurations</DropdownItem>
         <DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
-        <DropdownItem key="logout" color="danger" className="text-danger">
+        <DropdownItem onClick={handleSignout} key="logout" color="danger" className="text-danger">
           Signout
         </DropdownItem>
         <DropdownItem key="switch">

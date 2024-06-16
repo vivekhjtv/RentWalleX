@@ -80,7 +80,7 @@ export const Steam = () => {
     <>
       <div className="w-full z-20">
         <div id="chart">
-          <Chart options={options} series={state} type="area" height={425} width={600} />
+          <Chart options={options} series={state} type="area" />
         </div>
       </div>
     </>

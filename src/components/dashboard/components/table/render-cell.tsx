@@ -22,9 +22,9 @@ export const RenderCell = ({ user, columnKey }: Props) => {
           variant="flat"
           className={
             cellValue === "Paid"
-              ? "px-5 py-3 bg-green-200 w-32 rounded-xl"
+              ? "px-5 py-3 bg-green-200 w-32 sm:w-full rounded-xl"
               : cellValue === "Processing"
-              ? "px-5 py-3 bg-violet-300 w-32 rounded-xl"
+              ? "px-5 py-3 bg-violet-300 w-32 sm:w-full rounded-xl"
               : "warning"
           }
         >
