@@ -1,7 +1,7 @@
-'use client';
-import { Button, Input } from '@nextui-org/react';
-import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+"use client";
+import { Button, Input } from "@nextui-org/react";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
 // import { DotsIcon } from "@/components/icons/accounts/dots-icon";
 // import { ExportIcon } from "@/components/icons/accounts/export-icon";
 // import { InfoIcon } from "@/components/icons/accounts/info-icon";
@@ -11,22 +11,22 @@ import React, { useEffect, useState } from 'react';
 // import { SettingsIcon } from "@/components/icons/sidebar/settings-icon";
 // import { TableWrapper } from "@/components/table/table";
 // import { AddUser } from "./add-user";
-import { HouseIcon } from '../icons/breadcrumb/house-icon';
-import { UsersIcon } from '../icons/breadcrumb/users-icon';
-import { TrashIcon } from '@radix-ui/react-icons';
-import { DotsIcon } from '../icons/accounts/dots-icon';
-import { ExportIcon } from '../icons/accounts/export-icon';
-import { InfoIcon } from '../icons/accounts/info-icon';
-import { SettingsIcon } from '../icons/sidebar/settings-icon';
-import { TableWrapper } from '../table/table';
-import Modal from '@/components/auth/modal';
+import { HouseIcon } from "../icons/breadcrumb/house-icon";
+import { UsersIcon } from "../icons/breadcrumb/users-icon";
+import { TrashIcon } from "@radix-ui/react-icons";
+import { DotsIcon } from "../icons/accounts/dots-icon";
+import { ExportIcon } from "../icons/accounts/export-icon";
+import { InfoIcon } from "../icons/accounts/info-icon";
+import { SettingsIcon } from "../icons/sidebar/settings-icon";
+import { TableWrapper } from "../table/table";
+import Modal from "@/components/auth/modal";
 // import '../../../../../style.css'
 
 export const Products = () => {
   const [modal, setModal] = useState(true);
-  const [email, setEmail] = useState('');
-  const [referralCode, setReferralCode] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [referralCode, setReferralCode] = useState("");
+  const [error, setError] = useState("");
   const [totalRewards, setTotalRewards] = useState(100); // Replace with actual data source
 
   //   const handleEmailChange = (e) => {
@@ -59,17 +59,17 @@ export const Products = () => {
   return (
     <>
       <div className="container">
-        <h1 className="text-3xl font-semibold text-gray-900 mt-8">
+        <h1 className="text-3xl font-semibold text-gray-900  mt-8 dark:text-gray-300 ">
           Refer & Earn
         </h1>
-        <h3 className="font-semibold mt-10 text-gray-900">
+        <h3 className="font-semibold mt-10 text-gray-900 dark:text-gray-300">
           Your referral code: <strong>RENTX007</strong>
         </h3>
         <div className="mt-5 mb-8 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <div className="sm:col-span-4">
             <label
               htmlFor="firstName"
-              className="block text-sm font-medium leading-6 text-gray-900"
+              className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-300"
             >
               Invite your friends through email:
             </label>
@@ -80,7 +80,7 @@ export const Products = () => {
                 id="email"
                 // onChange={handleEmailChange}
                 autoComplete="given-name"
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6 dark:text-gray-300"
               />
               {/* {errors.firstName?.message && (
                     <p className='mt-2 text-sm text-red-400'>
@@ -97,13 +97,15 @@ export const Products = () => {
             </button>
           </div>
         </div>
-        <h3 className="font-semibold mt-10 text-gray-900">Your rewards</h3>
-        <p>$60</p>
+        <h3 className="font-semibold mt-10 text-gray-900 dark:text-gray-300">
+          Your rewards
+        </h3>
+        <p className="text-gray-900 dark:text-gray-300">$60</p>
         <div className="mt-5 mb-8 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <div className="sm:col-span-4">
             <label
               htmlFor="firstName"
-              className="block text-sm font-medium leading-6 text-gray-900"
+              className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-300"
             >
               Invited by a friend? Enter referral code:
             </label>
