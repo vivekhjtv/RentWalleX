@@ -42,7 +42,7 @@ export default function Form() {
       setFormSubmitted(true);
 
       application(data).then((result) => {
-        console.log(data);
+        console.log(result);
         // reset()
       });
     } else {

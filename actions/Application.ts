@@ -18,7 +18,7 @@ export const application = async (values:any) =>{
     console.log(validatedFields.data);
    
 
-    const existingUser = await db.application.findUnique({
+    const existingUser = await db.user_Info.findUnique({
       where:{
         email,
       }
