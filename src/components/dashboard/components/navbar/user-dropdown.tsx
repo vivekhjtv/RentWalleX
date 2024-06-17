@@ -5,11 +5,15 @@ import {
   DropdownTrigger,
   NavbarItem,
 } from '@nextui-org/react';
-import React from 'react';
+import React, { useState } from 'react';
 import { DarkModeSwitch } from './darkmodeswitch';
 import { SignOut } from '../../../../../actions/signout';
+import { userInfo } from '../../../../../actions/userInfo';
+import { auth } from '../../../../../auth';
+import { useSession } from 'next-auth/react';
 
-export const UserDropdown = () => {
+export const UserDropdown =  () => {
+  const session = useSession();
   const handleSignout = () => {
     SignOut();
 }
@@ -27,7 +31,7 @@ export const UserDropdown = () => {
             </div>
             <span className="ml-[30px]">
               <p className="block font-sans text-sm antialiased font-medium leading-none capitalize">
-                Tania Andrew
+               {session.data?.user.name}
               </p>
             </span>
           </div>
@@ -43,7 +47,7 @@ export const UserDropdown = () => {
           className="flex flex-col justify-start w-full items-start"
         >
           <p>Signed in as</p>
-          <p>zoey@example.com</p>
+          <p>{session.data?.user.email}</p>
         </DropdownItem>
         <DropdownItem key="settings">My Settings</DropdownItem>
         <DropdownItem key="team_settings">Team Settings</DropdownItem>

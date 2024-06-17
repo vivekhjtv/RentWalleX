@@ -3,13 +3,16 @@ import { Avatar, Button, Input } from '@nextui-org/react';
 import Link from 'next/link';
 import { HouseIcon } from '../icons/breadcrumb/house-icon';
 import { UsersIcon } from '../icons/breadcrumb/users-icon';
+import { userInfos } from '../../../../../actions/userInfo';
+import { useEffect, useState } from 'react';
+import { userInfo } from 'os';
 // import { TrashIcon } from '@radix-ui/react-icons';
 // import { DotsIcon } from '../icons/accounts/dots-icon';
 // import { ExportIcon } from '../icons/accounts/export-icon';
 // import { InfoIcon } from '../icons/accounts/info-icon';
 // import { SettingsIcon } from '../icons/sidebar/settings-icon';
 
-export const RentalHome = () => {
+export const RentalHome =  () => {
   return (
     <div className="container">
       <div className="my-4 lg:px-6 max-w-[95rem] mx-auto w-full flex flex-col gap-4">
@@ -31,9 +34,9 @@ export const RentalHome = () => {
                   src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
                 />
                 <div>
-                  <h2 className="text-xl font-bold dark:text-gray-300">
-                    Smit Shah
-                  </h2>
+                 
+                   
+                  
                   <p className="text-gray-500 dark:text-gray-400">Student</p>
                 </div>
               </div>
@@ -170,4 +173,5 @@ export const RentalHome = () => {
       </div>
     </div>
   );
+ 
 };

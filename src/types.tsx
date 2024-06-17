@@ -5,3 +5,11 @@ export type SideNavItem = {
   submenu?: boolean;
   subMenuItems?: SideNavItem[];
 };
+
+export type MembershipsType = {
+  id:string,
+  membershipType:string,
+  membershipAmt:string,
+  membershipDuration:string,
+  membershipAmenities:string
+}

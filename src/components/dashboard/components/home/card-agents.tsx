@@ -9,11 +9,15 @@ const pictureUsers = [
   "https://i.pravatar.cc/150?u=a092581d4ef9026700d",
 ];
 
-export const CardAgents = () => {
+type Props = {
+  custom : ()=>void
+}
+
+export const CardAgents = ({custom}:Props) => {
   return (
     <Card className="bg-default-50 rounded-xl shadow-md w-full">
       <CardBody className="py-5 gap-6">
-      <a
+      <a onClick={custom}
           href="#"
           className="block max-w-md p-6 bg-gradient-to-r from-green-500 to-lime-300 border border-gray-200 rounded-lg shadow dark:border-gray-700 dark:hover:bg-gray-700"
         >

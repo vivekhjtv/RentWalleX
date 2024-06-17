@@ -22,11 +22,16 @@ import { SettingsIcon } from '../icons/sidebar/settings-icon';
 import { TableWrapper } from '../table/table';
 import Modal from '@/components/auth/modal';
 import { userInfo } from '../../../../../actions/userInfo';
+import { CardAgents } from "../home/card-agents";
+import { MembershipTypeCards } from "./membershipTypes";
+import { getMembershipTypes } from "../../../../../actions/membership";
+
+import { MembershipsType } from "@/types";
 
 export const Membership = () => {
   const [modal, setModal] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [memberships, setMemberships] = useState<[MembershipsType]>();
   // Mock data for user, membership, payment, and plans
   const user = { name: "John Doe", email: "john.doe@example.com" };
   const membership = {
@@ -46,9 +51,14 @@ export const Membership = () => {
     setIsModalOpen(!isModalOpen);
   };
 
-  userInfo().then((data) => {
-    console.log(data);
-  });
+useEffect(() => {
+  getMembershipTypes().then((data:any) => {
+    setMemberships(data);
+   });
+},[])
+
+  
+  console.log(memberships)
 
   // useEffect(()=>{
   //   <Modal onClose={()=>setModal(false)}/>
@@ -59,8 +69,8 @@ export const Membership = () => {
         <h2 className="text-3xl font-semibold text-gray-900 ml-6 mt-8 dark:text-gray-300">
           Membership
         </h2>
-
-        <a
+        <CardAgents custom={toggleModal} />
+        {/* <a
           href="#"
           onClick={toggleModal}
           className="block max-w-sm p-6 m-6 bg-gradient-to-r from-green-500 to-lime-300 border border-gray-200 rounded-lg shadow dark:border-gray-700 dark:hover:bg-gray-700"
@@ -74,11 +84,16 @@ export const Membership = () => {
           <p className="font-normal text-gray-700 dark:text-gray-400">
             Elite Membership
           </p>
-        </a>
+        </a> */}
 
         <h2 className="m-6">Select Membership Plan</h2>
         <div className="grid grid-cols-3 gap-4">
-          <a
+      
+          {memberships?.map(mem =>(
+            <MembershipTypeCards id={mem.id} membershipType={mem.membershipType} membershipAmt={mem.membershipAmt} membershipDuration={mem.membershipDuration} membershipAmenities={mem.membershipAmenities}/>
+          ))}
+          
+          {/* <a
             href="#"
             className="block max-w-sm p-6 m-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
           >
@@ -88,8 +103,8 @@ export const Membership = () => {
             <p className="font-normal text-gray-700 dark:text-gray-400">
               Charge users a one-time payment fee to access the content.
             </p>
-          </a>
-          <a
+          </a> */}
+          {/* <a
             href="#"
             className="block max-w-sm p-6 m-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
           >
@@ -111,7 +126,7 @@ export const Membership = () => {
               Here are the biggest enterprise technology acquisitions of 2021 so
               far, in reverse chronological order.
             </p>
-          </a>
+          </a> */}
         </div>
       </div>
 
