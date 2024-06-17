@@ -1,24 +1,20 @@
 "use server";
 import { db } from "@/lib/db";
-import { parseISO } from "date-fns";
 export const getMembershipTypes = async () => {
   const result = await db.membership_Plans.findMany();
   return result;
 };
 
 export const getMembership = async (email: string) => {
-  const result = await db.user_Info.findFirst({
+  const result = await db.user_Info.findUnique({
     where: {
       email: email,
     },
     include: {
-      Membership_Info: {
-        where: {
-          membershipStatus: "Active",
-        },
-      },
+      Membership_Info: true,
     },
   });
+  console.log(result);
   if (result) {
     return result;
   } else {

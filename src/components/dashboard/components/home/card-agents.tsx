@@ -10,15 +10,15 @@ type Props = {
 
 export const CardAgents = ({ custom }: Props) => {
   const [memInfo, setMemInfo] = useState<MembershipInfoType>();
-
   const session = useSession();
   const userEmail = session?.data?.user.email!;
   useEffect(() => {
+    console.log(userEmail);
     getMembership(userEmail).then((data: any) => {
       setMemInfo(data);
     });
-  }, []);
-
+  }, [userEmail]);
+  console.log(memInfo);
   return (
     <Card className="block max-w-md p-6 bg-gradient-to-r from-green-500 to-lime-300 border border-gray-200 rounded-lg shadow dark:border-gray-700 dark:hover:bg-gray-700">
       <CardBody className="py-5 gap-6">
