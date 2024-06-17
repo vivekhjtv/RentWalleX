@@ -7,9 +7,9 @@ export type SideNavItem = {
 };
 
 export type MembershipsType = {
-  id:string,
-  membershipType:string,
-  membershipAmt:string,
-  membershipDuration:string,
-  membershipAmenities:string
-}
+  id: string;
+  membershipType: string;
+  membershipAmt: string;
+  membershipDuration: string;
+  membershipAmenities: string;
+};

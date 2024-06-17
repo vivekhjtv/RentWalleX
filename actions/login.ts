@@ -7,45 +7,33 @@ import bcrypt from "bcryptjs";
 import { signIn } from "../auth";
 import { DEFAULT_LOGIN_REDIRECT } from "../routes";
 import { AuthError } from "next-auth";
-import { 
-  sendVerificationEmail,
-  sendTwoFactorTokenEmail,
-} from "@/lib/mail";
+import { sendVerificationEmail, sendTwoFactorTokenEmail } from "@/lib/mail";
 import { getUserByEmail } from "@/data/user";
-import { 
+import {
   generateVerificationToken,
-  generateTwoFactorToken
+  generateTwoFactorToken,
 } from "@/lib/tokens";
-import { 
-  getTwoFactorConfirmationByUserId
-} from "@/data/two-factor-confirmation";
+import { getTwoFactorConfirmationByUserId } from "@/data/two-factor-confirmation";
 import { db } from "@/lib/db";
 import { getTwoFactorTokenByEmail } from "@/data/two-factor-token";
 // import { AuthError } from "next-auth";
 
+export const login = async (values: z.infer<typeof LoginSchema>) => {
+  const validatedFields = LoginSchema.safeParse(values);
+  console.log(values);
 
-export const login = async (values:z.infer<typeof LoginSchema>) =>{
-    const validatedFields = LoginSchema.safeParse(values);
-    console.log(values);
-    
+  if (!validatedFields.success) {
+    return { error: "Invalid fields!" };
+  }
 
-    if (!validatedFields.success) {
-      return { error: "Invalid fields!" };
-    }
-
-
-  const { email, password,code } = validatedFields.data;
+  const { email, password, code } = validatedFields.data;
   const existingUser = await getUserByEmail(email);
   // const isPassMatch = await bcrypt.compare(password,existingUser?.password);
 
-
-
-
   // console.log("hhhhhh"+isPassMatch);
-  
 
   if (!existingUser || !existingUser.email || !existingUser.password) {
-    return { error: "Email does not exist!" }
+    return { error: "Email does not exist!" };
   }
 
   // if(isPassMatch){
@@ -120,20 +108,17 @@ export const login = async (values:z.infer<typeof LoginSchema>) =>{
       email,
       password,
       redirectTo: DEFAULT_LOGIN_REDIRECT,
-    })
-
+    });
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
         case "CredentialsSignin":
-          return { error: "Invalid credentials!" }
+          return { error: "Invalid credentials!" };
         default:
-          return { error: "Something went wrong!" }
+          return { error: "Something went wrong!" };
       }
     }
 
     throw error;
   }
-
-    
-}
+};

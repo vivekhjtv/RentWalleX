@@ -12,18 +12,18 @@ import React, { useEffect, useState } from "react";
 // import { SettingsIcon } from "@/components/icons/sidebar/settings-icon";
 // import { TableWrapper } from "@/components/table/table";
 // import { AddUser } from "./add-user";
-import { HouseIcon } from '../icons/breadcrumb/house-icon';
-import { UsersIcon } from '../icons/breadcrumb/users-icon';
-import { TrashIcon } from '@radix-ui/react-icons';
-import { DotsIcon } from '../icons/accounts/dots-icon';
-import { ExportIcon } from '../icons/accounts/export-icon';
-import { InfoIcon } from '../icons/accounts/info-icon';
-import { SettingsIcon } from '../icons/sidebar/settings-icon';
-import { TableWrapper } from '../table/table';
-import Modal from '@/components/auth/modal';
-import { userInfo } from '../../../../../actions/userInfo';
+import { HouseIcon } from "../icons/breadcrumb/house-icon";
+import { UsersIcon } from "../icons/breadcrumb/users-icon";
+import { TrashIcon } from "@radix-ui/react-icons";
+import { DotsIcon } from "../icons/accounts/dots-icon";
+import { ExportIcon } from "../icons/accounts/export-icon";
+import { InfoIcon } from "../icons/accounts/info-icon";
+import { SettingsIcon } from "../icons/sidebar/settings-icon";
+import { TableWrapper } from "../table/table";
+import Modal from "@/components/auth/modal";
+import { userInfo } from "../../../../../actions/userInfo";
 import { CardAgents } from "../home/card-agents";
-import { MembershipTypeCards } from "./membershipTypes";
+import { MembershipTypeCards } from "./membershipTypesCards";
 import { getMembershipTypes } from "../../../../../actions/membership";
 
 import { MembershipsType } from "@/types";
@@ -51,14 +51,11 @@ export const Membership = () => {
     setIsModalOpen(!isModalOpen);
   };
 
-useEffect(() => {
-  getMembershipTypes().then((data:any) => {
-    setMemberships(data);
-   });
-},[])
-
-  
-  console.log(memberships)
+  useEffect(() => {
+    getMembershipTypes().then((data: any) => {
+      setMemberships(data);
+    });
+  }, []);
 
   // useEffect(()=>{
   //   <Modal onClose={()=>setModal(false)}/>
@@ -88,11 +85,16 @@ useEffect(() => {
 
         <h2 className="m-6">Select Membership Plan</h2>
         <div className="grid grid-cols-3 gap-4">
-      
-          {memberships?.map(mem =>(
-            <MembershipTypeCards id={mem.id} membershipType={mem.membershipType} membershipAmt={mem.membershipAmt} membershipDuration={mem.membershipDuration} membershipAmenities={mem.membershipAmenities}/>
+          {memberships?.map((mem) => (
+            <MembershipTypeCards
+              id={mem.id}
+              membershipType={mem.membershipType}
+              membershipAmt={mem.membershipAmt}
+              membershipDuration={mem.membershipDuration}
+              membershipAmenities={mem.membershipAmenities}
+            />
           ))}
-          
+
           {/* <a
             href="#"
             className="block max-w-sm p-6 m-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"

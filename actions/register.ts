@@ -7,43 +7,41 @@ import { RegisterSchema } from "../schemas";
 import { log } from "console";
 import { sendTwoFactorTokenEmail, sendVerificationEmail } from "@/lib/mail";
 
-import { generateTwoFactorToken, generateVerificationToken } from "@/lib/tokens";
+import {
+  generateTwoFactorToken,
+  generateVerificationToken,
+} from "@/lib/tokens";
 import { getTwoFactorTokenByEmail } from "@/data/two-factor-token";
 
-export const register = async (values:any) =>{
+export const register = async (values: any) => {
+  const validatedFields = RegisterSchema.safeParse(values);
 
-    const validatedFields = RegisterSchema.safeParse(values);
+  if (!validatedFields.success) {
+    return { error: "Invalid fields!" };
+  }
 
-    if (!validatedFields.success) {
-      return { error: "Invalid fields!" };
-    }
+  const { email, password, firstname, lastname, phone, code } =
+    validatedFields.data;
+  const hashedPassword = await bcrypt.hash(password, 10);
+  console.log(validatedFields.data);
+  console.log("hashedPassword");
+  console.log(hashedPassword);
 
-    const {email,password,firstname,lastname,phone,code} = validatedFields.data;
-    const hashedPassword = await bcrypt.hash(password,10);
-    console.log(validatedFields.data);
-    console.log("hashedPassword");
-    console.log(hashedPassword);
+  const existingUser = await db.user.findUnique({
+    where: {
+      email,
+    },
+  });
 
-    const existingUser = await db.user.findUnique({
-      where:{
-        email,
-      }
-    })
+  if (existingUser) {
+    return { error: "Email already exist" };
+  }
 
-    if(existingUser){
-      return {error:"Email already exist"}
-    }
+  const name = firstname + " " + lastname;
 
-    const name = firstname + ' ' + lastname;
-
-
-
-    
   if (email) {
     if (code) {
-      const twoFactorToken = await getTwoFactorTokenByEmail(
-      email
-      );
+      const twoFactorToken = await getTwoFactorTokenByEmail(email);
 
       if (!twoFactorToken) {
         return { error: "Invalid code!" };
@@ -60,7 +58,7 @@ export const register = async (values:any) =>{
       }
 
       await db.twoFactorToken.delete({
-        where: { id: twoFactorToken.id }
+        where: { id: twoFactorToken.id },
       });
 
       // const existingConfirmation = await getTwoFactorConfirmationByUserId(
@@ -76,49 +74,30 @@ export const register = async (values:any) =>{
       await db.twoFactorConfirmation.create({
         data: {
           userId: email,
-        }
+        },
       });
     } else {
-      const twoFactorToken = await generateTwoFactorToken(email)
-      await sendTwoFactorTokenEmail(
-        twoFactorToken.email,
-        twoFactorToken.token,
-      );
+      const twoFactorToken = await generateTwoFactorToken(email);
+      await sendTwoFactorTokenEmail(twoFactorToken.email, twoFactorToken.token);
 
       return { twoFactor: true };
     }
   }
 
-        await db.user.create({
-      data:{
-        name,
-        email,
-        password:hashedPassword,
-        phone
-      },
-    });
+  await db.user.create({
+    data: {
+      name,
+      email,
+      password: hashedPassword,
+      phone,
+    },
+  });
 
+  // const verificationToken = await generateVerificationToken(email);
+  // await sendVerificationEmail(
+  //   verificationToken.email,
+  //   verificationToken.token,
+  // );
 
-
-
-   
-    
-
-
-
-
-
-
-
-
-
-    // const verificationToken = await generateVerificationToken(email);
-    // await sendVerificationEmail(
-    //   verificationToken.email,
-    //   verificationToken.token,
-    // );
-
-    return { success: "User create SUccesfully!" };
-
-    
-}
+  return { success: "User create SUccesfully!" };
+};

@@ -1,5 +1,7 @@
 import { Avatar, AvatarGroup, Card, CardBody } from "@nextui-org/react";
+import { useSession } from "next-auth/react";
 import React from "react";
+import { getMembership } from "../../../../../actions/membership";
 
 const pictureUsers = [
   "https://i.pravatar.cc/150?u=a042581f4e29026024d",
@@ -10,14 +12,22 @@ const pictureUsers = [
 ];
 
 type Props = {
-  custom : ()=>void
-}
+  custom: () => void;
+};
 
-export const CardAgents = ({custom}:Props) => {
+export const CardAgents = ({ custom }: Props) => {
+  const session = useSession();
+  const userId = session?.data?.user.email!;
+
+  getMembership(userId).then((data) => {
+    console.log(data);
+  });
+
   return (
     <Card className="bg-default-50 rounded-xl shadow-md w-full">
       <CardBody className="py-5 gap-6">
-      <a onClick={custom}
+        <a
+          onClick={custom}
           href="#"
           className="block max-w-md p-6 bg-gradient-to-r from-green-500 to-lime-300 border border-gray-200 rounded-lg shadow dark:border-gray-700 dark:hover:bg-gray-700"
         >
