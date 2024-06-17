@@ -1,24 +1,25 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import axios from 'axios';
-import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { FormDataSchema } from '../../../../../schemas';
-import { steps } from './steps';
-import { FormError } from '@/components/form-error';
-import { application } from '../../../../../actions/Application';
+import { useState } from "react";
+import { motion } from "framer-motion";
+import axios from "axios";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { FormDataSchema } from "../../../../../schemas";
+import { steps } from "./steps";
+import { FormError } from "@/components/form-error";
+import { application } from "../../../../../actions/Application";
+import { userInfo } from "../../../../../actions/userInfo";
 type Inputs = z.infer<typeof FormDataSchema>;
 
 export default function Form() {
   const [previousStep, setPreviousStep] = useState(0);
   const [currentStep, setCurrentStep] = useState(0);
-  const [selectedImage, setSelectedImage] = useState('');
+  const [selectedImage, setSelectedImage] = useState("");
   const [selectedFile, setSelectedFile] = useState<File>();
   const [uploading, setUploading] = useState(false);
-  const [error, setError] = useState<string | undefined>('');
+  const [error, setError] = useState<string | undefined>("");
   const delta = currentStep - previousStep;
 
   const {
@@ -32,10 +33,16 @@ export default function Form() {
     resolver: zodResolver(FormDataSchema),
   });
 
+  userInfo().then((data) => {
+    if (data != undefined) {
+      setCurrentStep(5);
+    }
+  });
+
   const processForm: SubmitHandler<Inputs> = (data) => {
     // event.preventDefault();
     // Check if all checkboxes are checked
-    setError('');
+    setError("");
     const allChecked = Object.values(checkboxes).every((value) => value);
     if (allChecked) {
       // Perform form submission logic here
@@ -46,7 +53,7 @@ export default function Form() {
         // reset()
       });
     } else {
-      setError('Please checks all checkbox');
+      setError("Please checks all checkbox");
     }
   };
 
@@ -55,8 +62,8 @@ export default function Form() {
     try {
       if (!selectedFile) return;
       const formData = new FormData();
-      formData.append('myImage', selectedFile);
-      const { data } = await axios.post('/api/image', formData);
+      formData.append("myImage", selectedFile);
+      const { data } = await axios.post("/api/image", formData);
       console.log(data);
     } catch (error: any) {
       console.log(error.response?.data);
@@ -91,7 +98,7 @@ export default function Form() {
     }
   };
 
-  const [selectedOption, setSelectedOption] = useState('platinum'); // Set the default selected option
+  const [selectedOption, setSelectedOption] = useState("platinum"); // Set the default selected option
 
   const handleOptionChange = (event: any) => {
     setSelectedOption(event.target.value); // Update the selected option when the user clicks on a radio button
@@ -169,9 +176,9 @@ export default function Form() {
       <form className="" onSubmit={handleSubmit(processForm)}>
         {currentStep === 0 && (
           <motion.div
-            initial={{ x: delta >= 0 ? '50%' : '-50%', opacity: 0 }}
+            initial={{ x: delta >= 0 ? "50%" : "-50%", opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
           >
             <h2 className="text-xl font-semibold leading-7 mt-4 text-gray-900 dark:text-white">
               Personal Information
@@ -189,7 +196,7 @@ export default function Form() {
                   <input
                     type="text"
                     id="firstname"
-                    {...register('firstName')}
+                    {...register("firstName")}
                     autoComplete="given-name"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                   />
@@ -212,7 +219,7 @@ export default function Form() {
                   <input
                     type="text"
                     id="lastName"
-                    {...register('lastName')}
+                    {...register("lastName")}
                     autoComplete="family-name"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                   />
@@ -235,7 +242,7 @@ export default function Form() {
                   <input
                     id="email"
                     type="email"
-                    {...register('email')}
+                    {...register("email")}
                     autoComplete="email"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                   />
@@ -258,7 +265,7 @@ export default function Form() {
                   <input
                     id="phonenumber"
                     type="number"
-                    {...register('phonenumber')}
+                    {...register("phonenumber")}
                     autoComplete="phonenumber"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                   />
@@ -281,7 +288,7 @@ export default function Form() {
                   <input
                     type="text"
                     id="street"
-                    {...register('street')}
+                    {...register("street")}
                     autoComplete="street-address"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                   />
@@ -305,7 +312,7 @@ export default function Form() {
                   <input
                     type="text"
                     id="city"
-                    {...register('city')}
+                    {...register("city")}
                     autoComplete="address-level2"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                   />
@@ -328,7 +335,7 @@ export default function Form() {
                   <input
                     type="text"
                     id="state"
-                    {...register('state')}
+                    {...register("state")}
                     autoComplete="address-level1"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                   />
@@ -351,7 +358,7 @@ export default function Form() {
                   <input
                     type="text"
                     id="zip"
-                    {...register('zip')}
+                    {...register("zip")}
                     autoComplete="postal-code"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                   />
@@ -373,7 +380,7 @@ export default function Form() {
                 <div className="mt-2">
                   <select
                     id="country"
-                    {...register('country')}
+                    {...register("country")}
                     autoComplete="country-name"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
                   >
@@ -422,7 +429,7 @@ export default function Form() {
                         disabled={uploading}
                         onClick={handleUpload}
                       >
-                        {uploading ? 'Uploading' : 'upload'}
+                        {uploading ? "Uploading" : "upload"}
                       </button>
                     </div>
                   </div>
@@ -440,9 +447,9 @@ export default function Form() {
 
         {currentStep === 1 && (
           <motion.div
-            initial={{ x: delta >= 0 ? '50%' : '-50%', opacity: 0 }}
+            initial={{ x: delta >= 0 ? "50%" : "-50%", opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
           >
             <h2 className="text-xl font-semibold leading-7 text-gray-900 dark:text-white">
               Employment Detail
@@ -460,7 +467,7 @@ export default function Form() {
                   <input
                     id="currentEmployer"
                     type="text"
-                    {...register('currentEmployer')}
+                    {...register("currentEmployer")}
                     autoComplete="currentEmployer"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                   />
@@ -483,7 +490,7 @@ export default function Form() {
                   <input
                     id="jobTitle"
                     type="text"
-                    {...register('jobTitle')}
+                    {...register("jobTitle")}
                     autoComplete="jobTitle"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                   />
@@ -505,7 +512,7 @@ export default function Form() {
                 <div className="mt-2">
                   <select
                     id="empStatus"
-                    {...register('empStatus')}
+                    {...register("empStatus")}
                     autoComplete="empStatus"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                   >
@@ -531,7 +538,7 @@ export default function Form() {
                   <input
                     id="monthlyIncome"
                     type="text"
-                    {...register('monthlyIncome')}
+                    {...register("monthlyIncome")}
                     autoComplete="jobTitle"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                   />
@@ -553,7 +560,7 @@ export default function Form() {
                 <div className="mt-2">
                   <select
                     id="payFreq"
-                    {...register('payFreq')}
+                    {...register("payFreq")}
                     autoComplete="jobTitle"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                   >
@@ -574,9 +581,9 @@ export default function Form() {
 
         {currentStep === 2 && (
           <motion.div
-            initial={{ x: delta >= 0 ? '50%' : '-50%', opacity: 0 }}
+            initial={{ x: delta >= 0 ? "50%" : "-50%", opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
           >
             <h2 className="text-xl font-semibold leading-7 text-gray-900 dark:text-white">
               Rental Detail
@@ -593,7 +600,7 @@ export default function Form() {
                   <input
                     id="propAddress"
                     type="text"
-                    {...register('propAddress')}
+                    {...register("propAddress")}
                     autoComplete="propAddress"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                   />
@@ -616,7 +623,7 @@ export default function Form() {
                   <input
                     id="rentAmt"
                     type="text"
-                    {...register('rentAmt')}
+                    {...register("rentAmt")}
                     autoComplete="rentAmt"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                   />
@@ -639,7 +646,7 @@ export default function Form() {
                   <input
                     id="managerName"
                     type="text"
-                    {...register('managerName')}
+                    {...register("managerName")}
                     autoComplete="managerName"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                   />
@@ -662,7 +669,7 @@ export default function Form() {
                   <input
                     id="manageCompany"
                     type="text"
-                    {...register('manageCompany')}
+                    {...register("manageCompany")}
                     autoComplete="jobTitle"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                   />
@@ -685,7 +692,7 @@ export default function Form() {
                 <div className="mt-2">
                   <select
                     id="payMethod"
-                    {...register('payMethod')}
+                    {...register("payMethod")}
                     autoComplete="jobTitle"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                   >
@@ -708,9 +715,9 @@ export default function Form() {
         {currentStep === 3 && (
           <>
             <motion.div
-              initial={{ x: delta >= 0 ? '50%' : '-50%', opacity: 0 }}
+              initial={{ x: delta >= 0 ? "50%" : "-50%", opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.3, ease: 'easeInOut' }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
             >
               <h2 className="text-xl font-semibold leading-7 text-gray-900 dark:text-white">
                 Financial Information
@@ -731,7 +738,7 @@ export default function Form() {
                     <input
                       id="bankName"
                       type="text"
-                      {...register('bankName')}
+                      {...register("bankName")}
                       autoComplete="jobTitle"
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                     />
@@ -754,7 +761,7 @@ export default function Form() {
                     <input
                       id="acctHoldName"
                       type="text"
-                      {...register('acctHoldName')}
+                      {...register("acctHoldName")}
                       autoComplete="jobTitle"
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                     />
@@ -777,7 +784,7 @@ export default function Form() {
                     <input
                       id="acctNumber"
                       type="text"
-                      {...register('acctNumber')}
+                      {...register("acctNumber")}
                       autoComplete="jobTitle"
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                     />
@@ -802,7 +809,7 @@ export default function Form() {
                         <input
                           id="instNumber"
                           type="text"
-                          {...register('instNumber')}
+                          {...register("instNumber")}
                           autoComplete="instNumber"
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                         />
@@ -825,7 +832,7 @@ export default function Form() {
                         <input
                           id="routNumber"
                           type="text"
-                          {...register('routNumber')}
+                          {...register("routNumber")}
                           autoComplete="jobTitle"
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                         />
@@ -869,7 +876,7 @@ export default function Form() {
                           disabled={uploading}
                           onClick={handleUpload}
                         >
-                          {uploading ? 'Uploading' : 'upload'}
+                          {uploading ? "Uploading" : "upload"}
                         </button>
                       </div>
                     </div>
@@ -894,7 +901,7 @@ export default function Form() {
                           name="membership"
                           type="radio"
                           value="platinum"
-                          checked={selectedOption === 'platinum'} // Set checked attribute based on the selected option
+                          checked={selectedOption === "platinum"} // Set checked attribute based on the selected option
                           onChange={handleOptionChange}
                         />
                         Platinum Membership ( $25/month, billed annually )
@@ -907,7 +914,7 @@ export default function Form() {
                           name="membership"
                           type="radio"
                           value="gold"
-                          checked={selectedOption === 'gold'} // Set checked attribute based on the selected option
+                          checked={selectedOption === "gold"} // Set checked attribute based on the selected option
                           onChange={handleOptionChange}
                         />
                         Gold Membership ( $35/month, billed annually )
@@ -923,9 +930,9 @@ export default function Form() {
         {currentStep === 4 && (
           <>
             <motion.div
-              initial={{ x: delta >= 0 ? '50%' : '-50%', opacity: 0 }}
+              initial={{ x: delta >= 0 ? "50%" : "-50%", opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.3, ease: 'easeInOut' }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
             >
               <h2 className="text-xl font-semibold leading-7 text-gray-900 dark:text-white">
                 Additional Information
@@ -941,7 +948,7 @@ export default function Form() {
                   <div className="mt-2">
                     <select
                       id="hearAbtRx"
-                      {...register('hearAbtRx')}
+                      {...register("hearAbtRx")}
                       autoComplete="jobTitle"
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                     >

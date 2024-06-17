@@ -27,6 +27,7 @@ import { MembershipTypeCards } from "./membershipTypesCards";
 import { getMembershipTypes } from "../../../../../actions/membership";
 
 import { MembershipsType } from "@/types";
+import { motion } from "framer-motion";
 
 export const Membership = () => {
   const [modal, setModal] = useState(true);
@@ -66,6 +67,7 @@ export const Membership = () => {
         <h2 className="text-3xl font-semibold text-gray-900 ml-6 mt-8 dark:text-gray-300">
           Membership
         </h2>
+
         <CardAgents custom={toggleModal} />
         {/* <a
           href="#"

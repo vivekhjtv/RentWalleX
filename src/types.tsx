@@ -13,3 +13,19 @@ export type MembershipsType = {
   membershipDuration: string;
   membershipAmenities: string;
 };
+
+export type MembershipInfoType = {
+  Membership_Info: [
+    {
+      id: string;
+      membershipAmt: string;
+      membershipDuration: string;
+      membershipExpireDate: string;
+      membershipStartDate: string;
+      membershipStatus: string;
+      membershipType: string;
+      userId: string;
+    }
+  ];
+  name: string;
+};

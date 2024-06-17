@@ -6,10 +6,10 @@ export const getMembershipTypes = async () => {
   return result;
 };
 
-export const getMembership = async (id: string) => {
+export const getMembership = async (email: string) => {
   const result = await db.user_Info.findFirst({
     where: {
-      email: id,
+      email: email,
     },
     include: {
       Membership_Info: {
@@ -19,9 +19,11 @@ export const getMembership = async (id: string) => {
       },
     },
   });
-  console.log(id);
-  console.log(result);
-  return result;
+  if (result) {
+    return result;
+  } else {
+    return undefined;
+  }
 };
 
 export const insertMembershipdetails = async (
