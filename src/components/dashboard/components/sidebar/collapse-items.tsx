@@ -36,12 +36,22 @@ export const CollapseItems = ({ icon, items, title }: Props) => {
         >
           <div className="pl-12">
             {items.map((item, index) => (
-              <a href="/accounts"
-                key={index}
-                className="w-full flex rounded-xl text-default-500 hover:border-solid hover:border-2 hover:border-lime-300 transition-colors"
-              >
-                {item}
-              </a>
+              item === "Transactions" ? (
+                <a href="/accounts"
+                  key={index}
+                  className="w-full flex rounded-xl text-default-500 hover:border-solid hover:border-2 hover:border-lime-300 transition-colors"
+                >
+                  {item}
+                </a>
+              ) : 
+              (
+                <a href="/payment-methods"
+                  key={index}
+                  className="w-full flex rounded-xl text-default-500 hover:border-solid hover:border-2 hover:border-lime-300 transition-colors"
+                >
+                  {item}
+                </a>
+              )
             ))}
           </div>
         </AccordionItem>

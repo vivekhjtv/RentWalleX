@@ -66,7 +66,7 @@ export const SidebarWrapper = () => {
               />
               <CollapseItems
                 icon={<BalanceIcon />}
-                items={["Transactions"]}
+                items={["Transactions", "Payment Methods"]}
                 title="Payment"
               />
               <SidebarItem
