@@ -29,15 +29,14 @@ export const MembershipTypeCards = ({
       membershipDuration,
       membershipAmenities
     ).then((result) => {
-      alert(result);
+      if (confirm("Do you want to upgrade the membership?") == true) {
+        alert(result);
+      } else {
+      }
     });
   };
   return (
-    <a
-      onClick={() => handleBuy()}
-      href="#"
-      className="block max-w-sm p-6 m-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
-    >
+    <div className="block max-w-sm p-6 m-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
       <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
         {membershipType}
       </h5>
@@ -50,6 +49,12 @@ export const MembershipTypeCards = ({
       <p className="font-normal text-gray-700 dark:text-gray-400">
         {membershipAmenities}
       </p>
-    </a>
+      <button
+        onClick={() => handleBuy()}
+        className="bg-lime-100 p-3 mt-3 rounded-xl"
+      >
+        Upgrade
+      </button>
+    </div>
   );
 };

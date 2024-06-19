@@ -38,12 +38,12 @@ export const CardAgents = ({ custom }: Props) => {
           <h5 className="mt-5 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
             Status:{" "}
             {!memInfo?.Membership_Info[0]
-              ? "N/A"
+              ? "Not a member."
               : memInfo?.Membership_Info[0].membershipStatus}
           </h5>
           <p className="font-bold text-gray-700 dark:text-gray-400">
             {!memInfo?.Membership_Info[0]
-              ? "N/A"
+              ? ""
               : memInfo?.Membership_Info[0].membershipType}{" "}
             Membership
           </p>

@@ -1,14 +1,16 @@
 "use server";
 import { db } from "@/lib/db";
+import { auth } from "../auth";
 export const getMembershipTypes = async () => {
   const result = await db.membership_Plans.findMany();
   return result;
 };
 
 export const getMembership = async (email: string) => {
+  const session = await auth();
   const result = await db.user_Info.findUnique({
     where: {
-      email: email,
+      email: session?.user.email!,
     },
     include: {
       Membership_Info: true,

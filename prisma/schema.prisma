@@ -75,6 +75,7 @@ model User_Info {
   Monthly_Rent_Record Monthly_Rent_Record[]
   Membership_Info     Membership_Info[]
   Referals            Referals[]
+  Payment_Info        Payment_Info[]
 }
 
 model Property_Info {
@@ -120,6 +121,17 @@ model Membership_Info {
   membershipStartDate  DateTime?
   membershipExpireDate DateTime?
   membershipDuration   String
+}
+
+model Payment_Info {
+  id           String    @id @default(auto()) @map("_id") @db.ObjectId
+  userId       String
+  user         User_Info @relation(fields: [userId], references: [id], onDelete: Cascade)
+  rentAmt      String
+  paymentAmt   String
+  remainingAmt String
+  payemntDate  DateTime?
+  status       String
 }
 
 model Membership_Plans {

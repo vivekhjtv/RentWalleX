@@ -6,6 +6,8 @@ import { UsersIcon } from "../icons/breadcrumb/users-icon";
 import { userInfos } from "../../../../../actions/userInfo";
 import { useEffect, useState } from "react";
 import { userInfo } from "os";
+import { landlordInfo } from "../../../../../actions/landlord";
+import { PropertyInfoType } from "@/types";
 // import { TrashIcon } from '@radix-ui/react-icons';
 // import { DotsIcon } from '../icons/accounts/dots-icon';
 // import { ExportIcon } from '../icons/accounts/export-icon';
@@ -13,6 +15,13 @@ import { userInfo } from "os";
 // import { SettingsIcon } from '../icons/sidebar/settings-icon';
 
 export const RentalHome = () => {
+  const [propertyInfo, setPropertyInfo] = useState<PropertyInfoType>();
+  useEffect(() => {
+    landlordInfo().then((data: any) => {
+      console.log(data);
+      setPropertyInfo(data);
+    });
+  }, []);
   return (
     <div className="container">
       <div className="my-4 lg:px-6 max-w-[95rem] mx-auto w-full flex flex-col gap-4">
@@ -34,15 +43,17 @@ export const RentalHome = () => {
                   src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
                 />
                 <div>
-                  <p className="text-gray-500 dark:text-gray-400">Student</p>
+                  <p className="text-gray-500 dark:text-gray-400">
+                    {propertyInfo?.name}
+                  </p>
                 </div>
               </div>
               <div className="text-right">
                 <p className="text-gray-700 dark:text-gray-300 font-medium">
-                  +1 (444) - 455 - 6969
+                  {propertyInfo?.phonenumber}
                 </p>
                 <p className="text-gray-700 dark:text-gray-300">
-                  ABCANDXYZ@GMAIL.COM
+                  {propertyInfo?.email}
                 </p>
               </div>
             </div>
@@ -75,21 +86,28 @@ export const RentalHome = () => {
               </div>
               <div className="w-full md:w-1/2 lg:w-1/3 px-2 py-2">
                 <p className="font-bold text-gray-700 dark:text-gray-300">
-                  Job Title
+                  {propertyInfo?.jobTitle}
                 </p>
-                <p className="text-gray-500 dark:text-gray-400">Carpenter</p>
+                <p className="text-gray-500 dark:text-gray-400">
+                  {" "}
+                  {propertyInfo?.jobTitle}
+                </p>
               </div>
               <div className="w-full md:w-1/2 lg:w-1/3 px-2 py-2">
                 <p className="font-bold text-gray-700 dark:text-gray-300">
                   Company
                 </p>
-                <p className="text-gray-500 dark:text-gray-400">Rogers</p>
+                <p className="text-gray-500 dark:text-gray-400">
+                  {propertyInfo?.currentEmployer}
+                </p>
               </div>
               <div className="w-full md:w-1/2 lg:w-1/3 px-2 py-2">
                 <p className="font-bold text-gray-700 dark:text-gray-300">
-                  Personal Income
+                  Monthly Income
                 </p>
-                <p className="text-gray-500 dark:text-gray-400">$43000</p>
+                <p className="text-gray-500 dark:text-gray-400">
+                  ${propertyInfo?.monthlyIncome}
+                </p>
               </div>
               <div className="w-full md:w-1/2 lg:w-1/3 px-2 py-2">
                 <p className="font-bold text-gray-700 dark:text-gray-300">
@@ -113,7 +131,7 @@ export const RentalHome = () => {
                 />
                 <div>
                   <h2 className="text-xl font-bold dark:text-gray-300">
-                    Vivek Jethva
+                    {propertyInfo?.Property_Info[0].managerName}
                   </h2>
                   <p className="text-gray-500 dark:text-gray-400">Landlord</p>
                 </div>
@@ -137,7 +155,7 @@ export const RentalHome = () => {
                   PROPERTY ADDRESS
                 </h4>
                 <p className="text-gray-500 dark:text-gray-400">
-                  105 ABC STREET, TORONTO, ON A1C 2B3
+                  {propertyInfo?.Property_Info[0].propAddress}
                 </p>
               </div>
               <div className="mt-4">
