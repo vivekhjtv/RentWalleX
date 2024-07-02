@@ -2,7 +2,9 @@
 import React, { useState } from "react";
 import { ChevronUpIcon } from "../icons/sidebar/chevron-up-icon";
 import { Accordion, AccordionItem } from "@nextui-org/react";
+import { loadStripe } from '@stripe/stripe-js';
 import clsx from "clsx";
+import axios from "axios";
 
 interface Props {
   icon: React.ReactNode;
@@ -10,8 +12,25 @@ interface Props {
   items: string[];
 }
 
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
+
 export const CollapseItems = ({ icon, items, title }: Props) => {
   const [open, setOpen] = useState(false);
+
+  const handleStripeInitiation = async () => {
+    const stripe = await stripePromise;
+    const checkoutSession = await axios.post('/api/checkout-session', {
+      quantity: 1,
+    });
+
+    const result = await stripe!.redirectToCheckout({
+      sessionId: checkoutSession.data.id,
+    });
+
+    if (result.error) {
+      alert(result.error.message);
+    }
+  };
 
   return (
     <div className="flex gap-4 h-full items-center cursor-pointer">
@@ -45,9 +64,10 @@ export const CollapseItems = ({ icon, items, title }: Props) => {
                 </a>
               ) : 
               (
-                <a href="/payment-methods"
+                <a
                   key={index}
                   className="w-full flex rounded-xl text-default-500 hover:border-solid hover:border-2 hover:border-lime-300 transition-colors"
+                  onClick={handleStripeInitiation}
                 >
                   {item}
                 </a>

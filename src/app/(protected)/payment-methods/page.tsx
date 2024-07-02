@@ -81,7 +81,7 @@ function Page(props: Props) {
             <span className="font-semibold dark:text-gray-400">Order #123456789_123456789</span>
           </div>
           <div className="flex items-center justify-between mt-2">
-            <span className="text-3xl">69<span className="text-gray-500">$</span></span>
+            <span className="text-3xl">00<span className="text-gray-500">$</span></span>
             <div className="flex items-center flex-col">
               <span className="font-sm">Description</span>
               <span className="text-gray-500 text-xs">Order Description</span>
