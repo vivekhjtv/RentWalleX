@@ -63,3 +63,14 @@ export type PaymentInfoType = {
     }
   ];
 };
+export type ReferralInfoType = {
+  Referals: [
+    {
+      id: string;
+      referAmt: string;
+      referCode: string;
+      referToEmail: string;
+      userId: string;
+    }
+  ];
+};

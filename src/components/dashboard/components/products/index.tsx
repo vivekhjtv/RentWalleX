@@ -20,6 +20,11 @@ import { InfoIcon } from "../icons/accounts/info-icon";
 import { SettingsIcon } from "../icons/sidebar/settings-icon";
 import { TableWrapper } from "../table/table";
 import Modal from "@/components/auth/modal";
+import { getTotalReferrals, referal } from "../../../../../actions/referal";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { FormDataSchema } from "../../../../../schemas";
+import { ReferralInfoType } from "@/types";
 // import '../../../../../style.css'
 
 export const Products = () => {
@@ -27,11 +32,11 @@ export const Products = () => {
   const [email, setEmail] = useState("");
   const [referralCode, setReferralCode] = useState("");
   const [error, setError] = useState("");
+  const [datas, setData] = useState(0);
   const [totalRewards, setTotalRewards] = useState(100); // Replace with actual data source
-
-  //   const handleEmailChange = (e) => {
-  //     setEmail(e.target.value);
-  //   };
+  const handleEmailChange = (e: any) => {
+    setEmail(e.target.value);
+  };
 
   //   const handleReferralCodeChange = (e) => {
   //     setReferralCode(e.target.value);
@@ -50,8 +55,18 @@ export const Products = () => {
     // } else {
     //   setError('Please enter a valid email address');
     // }
+    referal(email).then((data) => {
+      alert(data);
+    });
   };
-
+  useEffect(() => {
+    getTotalReferrals().then((data: any) => {
+      data.Referals.map((item: any) => {
+        setData(datas + Number(item.referAmt));
+      });
+    });
+  }, []);
+  console.log(datas);
   const handleReferralSubmit = () => {
     // Logic to handle referral code submission
     alert(`Referral code ${referralCode} submitted`);
@@ -62,9 +77,9 @@ export const Products = () => {
         <h1 className="text-3xl font-semibold text-gray-900  mt-8 dark:text-gray-300 ">
           Refer & Earn
         </h1>
-        <h3 className="font-semibold mt-10 text-gray-900 dark:text-gray-300">
+        {/* <h3 className="font-semibold mt-10 text-gray-900 dark:text-gray-300">
           Your referral code: <strong>RENTX007</strong>
-        </h3>
+        </h3> */}
         <div className="mt-5 mb-8 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <div className="sm:col-span-4">
             <label
@@ -78,7 +93,7 @@ export const Products = () => {
                 type="email"
                 value={email}
                 id="email"
-                // onChange={handleEmailChange}
+                onChange={handleEmailChange}
                 autoComplete="given-name"
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6 dark:text-gray-300"
               />
@@ -100,7 +115,7 @@ export const Products = () => {
         <h3 className="font-semibold mt-10 text-gray-900 dark:text-gray-300">
           Your rewards
         </h3>
-        <p className="text-gray-900 dark:text-gray-300">$60</p>
+        <p className="text-gray-900 dark:text-gray-300">${datas}</p>
         <div className="mt-5 mb-8 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <div className="sm:col-span-4">
             <label
