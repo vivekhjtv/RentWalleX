@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
 import { z } from "zod";
@@ -11,17 +11,19 @@ import { steps } from "./steps";
 import { FormError } from "@/components/form-error";
 import { application } from "../../../../../actions/Application";
 import { userInfo } from "../../../../../actions/userInfo";
+import { useSession } from "next-auth/react";
 type Inputs = z.infer<typeof FormDataSchema>;
 
 export default function Form() {
   const [previousStep, setPreviousStep] = useState(0);
   const [currentStep, setCurrentStep] = useState(0);
   const [selectedImage, setSelectedImage] = useState("");
+  const [incomeType, setIncomeType] = useState("Weekly");
   const [selectedFile, setSelectedFile] = useState<File>();
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | undefined>("");
   const delta = currentStep - previousStep;
-
+  const session = useSession();
   const {
     register,
     handleSubmit,
@@ -50,6 +52,7 @@ export default function Form() {
 
       application(data).then((result) => {
         console.log(result);
+
         // reset()
       });
     } else {
@@ -77,7 +80,7 @@ export default function Form() {
     const fields = steps[currentStep].fields;
     const output = await trigger(fields as FieldName[], { shouldFocus: true });
     const allChecked = Object.values(checkboxes).every((value) => value);
-
+    if (errors) console.log(errors);
     if (!output) return;
 
     if (currentStep < steps.length - 1) {
@@ -118,6 +121,14 @@ export default function Form() {
       ...prevState,
       [name]: checked,
     }));
+  };
+
+  const handleIncomeLabel = (event: any) => {
+    useEffect(() => {
+      const type = event.target.value;
+      setIncomeType(type);
+      console.log(event.target.value);
+    }, []);
   };
 
   // const handleSubmit = (event:any) => {
@@ -243,7 +254,8 @@ export default function Form() {
                     id="email"
                     type="email"
                     {...register("email")}
-                    autoComplete="email"
+                    value={session.data?.user.email!}
+                    readOnly
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
                   />
                   {errors.email?.message && (
@@ -529,10 +541,37 @@ export default function Form() {
 
               <div className="sm:col-span-4">
                 <label
+                  htmlFor="payFreq"
+                  className="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
+                >
+                  Payment Frequency (Weekly, Bi-weekly, Monthly)
+                </label>
+                <div className="mt-2">
+                  <select
+                    id="payFreq"
+                    {...register("payFreq")}
+                    autoComplete="jobTitle"
+                    onChange={handleIncomeLabel}
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+                  >
+                    <option value="Weekly">Weekly</option>
+                    <option value="Biweekly">Bi-weekly</option>
+                    <option value="Monthly">Monthly</option>
+                  </select>
+                  {errors.payFreq?.message && (
+                    <p className="mt-2 text-sm text-red-400">
+                      {errors.payFreq.message}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              <div className="sm:col-span-4">
+                <label
                   htmlFor="monthlyIncome"
                   className="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
                 >
-                  Monthly Income Before Taxes
+                  {incomeType} Income Before Taxes
                 </label>
                 <div className="mt-2">
                   <input
@@ -545,32 +584,6 @@ export default function Form() {
                   {errors.monthlyIncome?.message && (
                     <p className="mt-2 text-sm text-red-400">
                       {errors.monthlyIncome.message}
-                    </p>
-                  )}
-                </div>
-              </div>
-
-              <div className="sm:col-span-4">
-                <label
-                  htmlFor="payFreq"
-                  className="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
-                >
-                  Payment Freequency (Weekly, Bi-weekly, Monthly)
-                </label>
-                <div className="mt-2">
-                  <select
-                    id="payFreq"
-                    {...register("payFreq")}
-                    autoComplete="jobTitle"
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
-                  >
-                    <option value="Weekly">Weekly</option>
-                    <option value="Biweekly">Bi-weekly</option>
-                    <option value="Monthly">Monthly</option>
-                  </select>
-                  {errors.payFreq?.message && (
-                    <p className="mt-2 text-sm text-red-400">
-                      {errors.payFreq.message}
                     </p>
                   )}
                 </div>
@@ -607,6 +620,52 @@ export default function Form() {
                   {errors.propAddress?.message && (
                     <p className="mt-2 text-sm text-red-400">
                       {errors.propAddress.message}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              <div className="sm:col-span-4">
+                <label
+                  htmlFor="propType"
+                  className="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
+                >
+                  Type of Property
+                </label>
+                <div className="mt-2">
+                  <input
+                    id="propType"
+                    type="text"
+                    {...register("propType")}
+                    autoComplete="propType"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+                  />
+                  {errors.propType?.message && (
+                    <p className="mt-2 text-sm text-red-400">
+                      {errors.propType.message}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              <div className="sm:col-span-4">
+                <label
+                  htmlFor="propNoOfBeds"
+                  className="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
+                >
+                  Number of bedrooms
+                </label>
+                <div className="mt-2">
+                  <input
+                    id="propNoOfBeds"
+                    type="text"
+                    {...register("propNoOfBeds")}
+                    autoComplete="propNoOfBeds"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+                  />
+                  {errors.propNoOfBeds?.message && (
+                    <p className="mt-2 text-sm text-red-400">
+                      {errors.propNoOfBeds.message}
                     </p>
                   )}
                 </div>
@@ -676,6 +735,52 @@ export default function Form() {
                   {errors.manageCompany?.message && (
                     <p className="mt-2 text-sm text-red-400">
                       {errors.manageCompany.message}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              <div className="sm:col-span-4">
+                <label
+                  htmlFor="propManagerEmail"
+                  className="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
+                >
+                  Property Manager's Email
+                </label>
+                <div className="mt-2">
+                  <input
+                    id="propManagerEmail"
+                    type="text"
+                    {...register("propManagerEmail")}
+                    autoComplete="propManagerEmail"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+                  />
+                  {errors.propManagerEmail?.message && (
+                    <p className="mt-2 text-sm text-red-400">
+                      {errors.propManagerEmail.message}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              <div className="sm:col-span-4">
+                <label
+                  htmlFor="propManagerPhone"
+                  className="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
+                >
+                  Property Manager's Phone
+                </label>
+                <div className="mt-2">
+                  <input
+                    id="propManagerPhone"
+                    type="text"
+                    {...register("propManagerPhone")}
+                    autoComplete="propManagerPhone"
+                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+                  />
+                  {errors.propManagerPhone?.message && (
+                    <p className="mt-2 text-sm text-red-400">
+                      {errors.propManagerPhone.message}
                     </p>
                   )}
                 </div>
@@ -1031,7 +1136,8 @@ export default function Form() {
               Complete
             </h2>
             <p className="mt-1 text-sm leading-6 text-gray-600">
-              Thank you for choosing Rentwallex.
+              Thank you for choosing Rentwallex. Please be patient untill our
+              team review your application.
             </p>
           </>
         )}

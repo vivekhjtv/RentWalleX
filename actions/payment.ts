@@ -16,3 +16,22 @@ export const PaymentInfo = async () => {
   });
   return result;
 };
+
+export const SavePaymentInfo = async (paymentAmt: string) => {
+  const session = await auth();
+  const rentAmt = "2000";
+  const result = db.user_Info.update({
+    where: {
+      email: session?.user.email!,
+    },
+    data: {
+      Payment_Info: {
+        create: {
+          rentAmt: Number(rentAmt),
+          paymentAmt: paymentAmt,
+          remainingAmt: Number(rentAmt) - Number(paymentAmt),
+        },
+      },
+    },
+  });
+};

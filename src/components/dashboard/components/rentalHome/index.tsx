@@ -86,7 +86,7 @@ export const RentalHome = () => {
               </div>
               <div className="w-full md:w-1/2 lg:w-1/3 px-2 py-2">
                 <p className="font-bold text-gray-700 dark:text-gray-300">
-                  {propertyInfo?.jobTitle}
+                  Job Title
                 </p>
                 <p className="text-gray-500 dark:text-gray-400">
                   {" "}

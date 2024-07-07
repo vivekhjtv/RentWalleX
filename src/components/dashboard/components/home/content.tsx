@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { TableWrapper } from "../table/table";
 import { CardBalance1 } from "./card-balance1";
@@ -10,6 +10,7 @@ import { CardTransactions } from "./card-transactions";
 import { Link } from "@nextui-org/react";
 import NextLink from "next/link";
 import Modal from "@/components/auth/modal";
+import { applicationCheck } from "../../../../../actions/Application";
 
 const Chart = dynamic(
   () => import("../charts/steam").then((mod) => mod.Steam),

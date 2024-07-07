@@ -1,29 +1,48 @@
-import React from 'react';
-import { Sidebar } from './sidebar.styles';
-import { Avatar, Tooltip } from '@nextui-org/react';
-import { CompaniesDropdown } from './companies-dropdown';
-import { HomeIcon } from '../icons/sidebar/home-icon';
-import { PaymentsIcon } from '../icons/sidebar/payments-icon';
-import { BalanceIcon } from '../icons/sidebar/balance-icon';
-import { AccountsIcon } from '../icons/sidebar/accounts-icon';
-import { CustomersIcon } from '../icons/sidebar/customers-icon';
-import { ProductsIcon } from '../icons/sidebar/products-icon';
-import { ReportsIcon } from '../icons/sidebar/reports-icon';
-import { DevIcon } from '../icons/sidebar/dev-icon';
-import { ViewIcon } from '../icons/sidebar/view-icon';
-import { SettingsIcon } from '../icons/sidebar/settings-icon';
-import { CollapseItems } from './collapse-items';
-import { SidebarItem } from './sidebar-item';
-import { SidebarMenu } from './sidebar-menu';
-import { FilterIcon } from '../icons/sidebar/filter-icon';
-import { useSidebarContext } from '../layout/layout-context';
-import { ChangeLogIcon } from '../icons/sidebar/changelog-icon';
-import { usePathname } from 'next/navigation';
+import React, { useEffect, useState } from "react";
+import { Sidebar } from "./sidebar.styles";
+import { Avatar, Tooltip } from "@nextui-org/react";
+import { CompaniesDropdown } from "./companies-dropdown";
+import { HomeIcon } from "../icons/sidebar/home-icon";
+import { PaymentsIcon } from "../icons/sidebar/payments-icon";
+import { BalanceIcon } from "../icons/sidebar/balance-icon";
+import { AccountsIcon } from "../icons/sidebar/accounts-icon";
+import { CustomersIcon } from "../icons/sidebar/customers-icon";
+import { ProductsIcon } from "../icons/sidebar/products-icon";
+import { ReportsIcon } from "../icons/sidebar/reports-icon";
+import { DevIcon } from "../icons/sidebar/dev-icon";
+import { ViewIcon } from "../icons/sidebar/view-icon";
+import { SettingsIcon } from "../icons/sidebar/settings-icon";
+import { CollapseItems } from "./collapse-items";
+import { SidebarItem } from "./sidebar-item";
+import { SidebarMenu } from "./sidebar-menu";
+import { FilterIcon } from "../icons/sidebar/filter-icon";
+import { useSidebarContext } from "../layout/layout-context";
+import { ChangeLogIcon } from "../icons/sidebar/changelog-icon";
+import { redirect, usePathname } from "next/navigation";
+import { applicationCheck } from "../../../../../actions/Application";
+import { useRouter } from "next/navigation";
 
 export const SidebarWrapper = () => {
   const pathname = usePathname();
   const { collapsed, setCollapsed } = useSidebarContext();
-
+  const [buttonDisable, setButtonDisable] = useState(false);
+  const { push } = useRouter();
+  useEffect(() => {
+    applicationCheck().then((data: any) => {
+      console.log(data);
+      if (data === null) {
+        alert("Please fill up the application first.");
+        push("/application");
+        setButtonDisable(true);
+      } else {
+        if (data.isApproved === false) {
+          setButtonDisable(true);
+        } else {
+          setButtonDisable(false);
+        }
+      }
+    });
+  }, []);
   return (
     <aside className="h-screen z-[202] sticky top-0">
       {collapsed ? (
@@ -43,23 +62,23 @@ export const SidebarWrapper = () => {
               <SidebarItem
                 title="Dashboard"
                 icon={<HomeIcon />}
-                isActive={pathname === '/home'}
-                href="/home"
+                isActive={pathname === "/home"}
+                href={buttonDisable ? "application" : "/home"}
               />
               <SidebarItem
-                isActive={pathname === '/rentalHome'}
+                isActive={pathname === "/rentalHome"}
                 title="My Apartment"
                 icon={<AccountsIcon />}
-                href="rentalHome"
+                href={buttonDisable ? "application" : "/rentalHome"}
               />
               <SidebarItem
-                isActive={pathname === '/membership'}
+                isActive={pathname === "/membership"}
                 title="Membership"
                 icon={<PaymentsIcon />}
-                href="membership"
+                href={buttonDisable ? "application" : "/membership"}
               />
               <SidebarItem
-                isActive={pathname === '/application'}
+                isActive={pathname === "/application"}
                 title="My Application"
                 icon={<ViewIcon />}
                 href="application"
@@ -70,15 +89,15 @@ export const SidebarWrapper = () => {
                 title="Payment"
               />
               <SidebarItem
-                isActive={pathname === '/customers'}
+                isActive={pathname === "/customers"}
                 title="Credit History"
                 icon={<CustomersIcon />}
               />
               <SidebarItem
-                isActive={pathname === '/products'}
+                isActive={pathname === "/products"}
                 title="Refer & Earn"
                 icon={<ProductsIcon />}
-                href="products"
+                href={buttonDisable ? "application" : "/products"}
               />
               {/* <SidebarItem
                 isActive={pathname === "/reports"}
@@ -86,10 +105,10 @@ export const SidebarWrapper = () => {
                 icon={<SettingsIcon />}
               /> */}
               <SidebarItem
-                isActive={pathname === '/settings'}
+                isActive={pathname === "/settings"}
                 title="Settings"
                 icon={<SettingsIcon />}
-                href="settings"
+                href={buttonDisable ? "application" : "/settings"}
               />
             </SidebarMenu>
 

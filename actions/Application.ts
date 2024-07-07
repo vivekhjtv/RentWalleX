@@ -2,6 +2,7 @@
 
 import { db } from "@/lib/db";
 import { FormDataSchema } from "../schemas";
+import { auth } from "../auth";
 
 export const application = async (values: any) => {
   const validatedFields = FormDataSchema.safeParse(values);
@@ -26,6 +27,8 @@ export const application = async (values: any) => {
     monthlyIncome,
     payFreq,
     propAddress,
+    propType,
+    propNoOfBeds,
     rentAmt,
     manageCompany,
     managerName,
@@ -66,6 +69,7 @@ export const application = async (values: any) => {
       monthlyIncome,
       payFreq,
       hearAbtRx,
+      isApproved: false,
       Bank_Info: {
         create: [
           {
@@ -82,6 +86,8 @@ export const application = async (values: any) => {
           {
             propName,
             propAddress,
+            propType,
+            propNoOfBeds,
             rentAmt,
             manageCompany,
             managerName,
@@ -149,4 +155,15 @@ export const application = async (values: any) => {
   // );
 
   return { success: "Application created Succesfully!" };
+};
+
+export const applicationCheck = async () => {
+  const session = await auth();
+  const email = session?.user.email!;
+  const result = db.user_Info.findUnique({
+    where: {
+      email: email,
+    },
+  });
+  return result;
 };

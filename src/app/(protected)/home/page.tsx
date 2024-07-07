@@ -11,14 +11,13 @@
 //       </>
 //     );
 //   }
-  
+
 import { Content } from "@/components/dashboard/components/home/content";
 import type { NextPage } from "next";
 
 const Home: NextPage = () => {
   return <Content />;
   // return <h1>Home</h1>
-
 };
 
 export default Home;

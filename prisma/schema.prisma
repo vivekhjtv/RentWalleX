@@ -70,6 +70,7 @@ model User_Info {
   monthlyIncome       String?
   payFreq             String?
   hearAbtRx           String?
+  isApproved          Boolean
   Property_Info       Property_Info[]
   Bank_Info           Bank_Info[]
   Monthly_Rent_Record Monthly_Rent_Record[]
@@ -84,6 +85,8 @@ model Property_Info {
   user          User_Info @relation(fields: [userId], references: [id], onDelete: Cascade)
   propName      String
   propAddress   String
+  propType      String
+  propNoOfBeds  String
   rentAmt       String
   manageCompany String
   managerName   String
