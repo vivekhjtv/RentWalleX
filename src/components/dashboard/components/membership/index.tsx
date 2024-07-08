@@ -140,10 +140,10 @@ export const Membership = () => {
       {isModalOpen && (
         <div
           id="default-modal"
-          className="fixed top-0 right-0 left-0 z-50 w-full h-full flex justify-center items-center"
+          className="fixed left-0 top-0 w-full h-full bg-black bg-opacity-30 z-50 overflow-auto backdrop-blur flex justify-center items-center"
         >
-          <div className="relative p-4 w-full max-w-2xl max-h-full">
-            <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+          <div className="relative p-4 w-full  max-w-2xl max-h-full">
+            <div className="relative bg-white rounded-lg shadow  dark:bg-gray-700">
               <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                   Membership Info

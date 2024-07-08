@@ -38,9 +38,9 @@ export const RegisterSchema = z.object({
   lastname: z.string().min(1, {
     message: "Lastname is required",
   }),
-  phone: z.string().min(7, {
-    message: "Phone number is required",
-  }),
+  // phone: z.string().min(7, {
+  //   message: "Phone number is required",
+  // }),
   code: z.optional(z.string()),
   // sin:z.string().min(7, {
   //   message: "SIN number is required",

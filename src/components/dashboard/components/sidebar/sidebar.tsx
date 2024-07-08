@@ -75,7 +75,7 @@ export const SidebarWrapper = () => {
                 isActive={pathname === "/membership"}
                 title="Membership"
                 icon={<PaymentsIcon />}
-                href={buttonDisable ? "application" : "/membership"}
+                href={"/membership"}
               />
               <SidebarItem
                 isActive={pathname === "/application"}

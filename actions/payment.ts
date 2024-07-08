@@ -19,7 +19,7 @@ export const PaymentInfo = async () => {
 
 export const SavePaymentInfo = async (paymentAmt: string) => {
   const session = await auth();
-  const rentAmt = "2000";
+  const rentAmt = 2000;
   const result = db.user_Info.update({
     where: {
       email: session?.user.email!,
@@ -27,7 +27,7 @@ export const SavePaymentInfo = async (paymentAmt: string) => {
     data: {
       Payment_Info: {
         create: {
-          rentAmt: Number(rentAmt),
+          rentAmt: rentAmt,
           paymentAmt: paymentAmt,
           remainingAmt: Number(rentAmt) - Number(paymentAmt),
         },

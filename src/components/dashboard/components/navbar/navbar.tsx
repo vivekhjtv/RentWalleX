@@ -1,34 +1,47 @@
-
-import { Input, Link, Navbar, NavbarContent } from '@nextui-org/react';
-import React, { useState } from 'react';
-import { FeedbackIcon } from '../icons/navbar/feedback-icon';
-import { GithubIcon } from '../icons/navbar/github-icon';
-import { SupportIcon } from '../icons/navbar/support-icon';
-import { SearchIcon } from '../icons/searchicon';
-import { BurguerButton } from './burguer-button';
-import { NotificationsDropdown } from './notifications-dropdown';
-import { UserDropdown } from './user-dropdown';
-import { userInfo } from '../../../../../actions/userInfo';
-import { auth } from '../../../../../auth';
-import { SessionProvider, useSession } from 'next-auth/react';
+import { Input, Link, Navbar, NavbarContent } from "@nextui-org/react";
+import React, { useState } from "react";
+import { FeedbackIcon } from "../icons/navbar/feedback-icon";
+import { GithubIcon } from "../icons/navbar/github-icon";
+import { SupportIcon } from "../icons/navbar/support-icon";
+import { SearchIcon } from "../icons/searchicon";
+import { BurguerButton } from "./burguer-button";
+import { NotificationsDropdown } from "./notifications-dropdown";
+import { UserDropdown } from "./user-dropdown";
+import { userInfo } from "../../../../../actions/userInfo";
+import { auth } from "../../../../../auth";
+import { SessionProvider, useSession } from "next-auth/react";
+import Application from "@/app/(protected)/application/page";
 
 interface Props {
   children: React.ReactNode;
 }
 
-export const NavbarWrapper =  ({ children}: Props) => {
+export const NavbarWrapper = ({ children }: Props) => {
   const session = useSession();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleModal = () => {
+    if (isModalOpen === false) {
+      setIsModalOpen(true);
+    } else {
+      setIsModalOpen(false);
+    }
+    console.log(isModalOpen);
+  };
+
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
   return (
     <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
       <Navbar
         isBordered
         className="w-full"
         style={{
-          paddingTop: '1rem',
-          paddingBottom: '1rem',
+          paddingTop: "1rem",
+          paddingBottom: "1rem",
         }}
         classNames={{
-          wrapper: 'w-full max-w-full',
+          wrapper: "w-full max-w-full",
         }}
       >
         <NavbarContent className="md:hidden">
@@ -38,7 +51,7 @@ export const NavbarWrapper =  ({ children}: Props) => {
           {/* <h5>Hi Zoey, <span className="text-2xl">Welcome Back</span></h5> */}
           <div>
             <SessionProvider>
-            <h5>Hi {session.data?.user.name},</h5>
+              <h5>Hi {session.data?.user.name},</h5>
             </SessionProvider>
             <span className="text-2xl">Welcome Back</span>
           </div>
@@ -48,7 +61,9 @@ export const NavbarWrapper =  ({ children}: Props) => {
           className="w-fit data-[justify=end]:flex-grow-0"
         >
           <div className="flex items-center gap-2 max-md:hidden"></div>
-
+          <button onClick={handleModal} className="bg-gray-500">
+            form
+          </button>
           <NotificationsDropdown />
 
           <div className="max-md:hidden"></div>
@@ -58,6 +73,7 @@ export const NavbarWrapper =  ({ children}: Props) => {
           </NavbarContent>
         </NavbarContent>
       </Navbar>
+      {isModalOpen && <Application />}
       {children}
     </div>
   );

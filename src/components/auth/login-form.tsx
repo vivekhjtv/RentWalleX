@@ -85,7 +85,7 @@ export const LoginForm = () => {
       <CardWrapper
         headerLabel="Welcome back"
         backButtonLabel="Don't have an account?"
-        backButtonHref=""
+        backButtonHref="/auth/register"
         showSocial
       >
         <Form {...form}>
@@ -121,7 +121,6 @@ export const LoginForm = () => {
                         <FormControl>
                           <Input
                             {...field}
-                            disabled
                             placeholder="john.doe@example.com"
                             type="email"
                           />
@@ -139,7 +138,6 @@ export const LoginForm = () => {
                         <FormControl>
                           <Input
                             {...field}
-                            disabled
                             placeholder="******"
                             type="password"
                           />

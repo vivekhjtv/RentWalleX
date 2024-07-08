@@ -14,14 +14,14 @@ import {
 import { getTwoFactorTokenByEmail } from "@/data/two-factor-token";
 
 export const register = async (values: any) => {
+  console.log("yesyd");
   const validatedFields = RegisterSchema.safeParse(values);
 
   if (!validatedFields.success) {
     return { error: "Invalid fields!" };
   }
 
-  const { email, password, firstname, lastname, phone, code } =
-    validatedFields.data;
+  const { email, password, firstname, lastname, code } = validatedFields.data;
   const hashedPassword = await bcrypt.hash(password, 10);
   console.log(validatedFields.data);
   console.log("hashedPassword");
@@ -78,6 +78,7 @@ export const register = async (values: any) => {
       });
     } else {
       const twoFactorToken = await generateTwoFactorToken(email);
+      console.log(twoFactorToken.email);
       await sendTwoFactorTokenEmail(twoFactorToken.email, twoFactorToken.token);
 
       return { twoFactor: true };
@@ -89,7 +90,6 @@ export const register = async (values: any) => {
       name,
       email,
       password: hashedPassword,
-      phone,
     },
   });
 
@@ -99,5 +99,5 @@ export const register = async (values: any) => {
   //   verificationToken.token,
   // );
 
-  return { success: "User create SUccesfully!" };
+  return { success: "User create Succesfully!" };
 };
