@@ -158,10 +158,13 @@ import { register } from "../../../actions/register";
 import { cn } from "@/lib/utils";
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 import Modal from "./modal";
+import { useRouter } from "next/navigation";
 
 export const RegisterForm = () => {
+  const router = useRouter();
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
+  const [redirect, setRedirect] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
   // const [step,setStep] = React.useState(0);
   const [showTwoFactor, setShowTwoFactor] = useState(false);
@@ -212,6 +215,9 @@ export const RegisterForm = () => {
           if (data?.twoFactor) {
             setShowTwoFactor(true);
           }
+          
+          if (data?.redirect)
+            setRedirect(data.redirect);
         });
       });
     } else {
@@ -226,6 +232,9 @@ export const RegisterForm = () => {
     // setShowTwoFactor(true);
   };
 
+  if (redirect) {
+    router.push(redirect);
+  }
   return (
     <CardWrapper
       headerLabel="Create an account"
