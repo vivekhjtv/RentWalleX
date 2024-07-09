@@ -193,6 +193,10 @@ export const RegisterForm = () => {
   // };
 
   const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
+    if (values.password !== values.repassword) {
+      setError("Password does not match");
+      return;
+    }
     // if(isChecked){
     setError("");
     setSuccess("");
