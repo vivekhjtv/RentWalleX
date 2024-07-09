@@ -32,7 +32,7 @@ export const sendTwoFactorTokenEmail = async (email: string, token: string) => {
     console.log('Resend data:', data);
 
     const msg = {
-      to: "gauravhariyani12.gh@gmail.com",
+      to: email,
       from: process.env.SENDGRID_SENDER_EMAIL!,
       subject: "2FA Code",
       text: `Your 2FA code: ${token}`,
