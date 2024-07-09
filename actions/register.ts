@@ -99,5 +99,5 @@ export const register = async (values: any) => {
   //   verificationToken.token,
   // );
 
-  return { success: "User create Succesfully!" };
+  return { success: "User create Succesfully!", redirect: "/auth/login" };
 };

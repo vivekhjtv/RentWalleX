@@ -1,6 +1,10 @@
 import { Resend } from "resend";
-
+import { NextResponse } from 'next/server';
+import sgMail from '@sendgrid/mail';
 const resend = new Resend(process.env.RESEND_API_KEY);
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
+
 
 const domain = "http://localhost:3000";
 
@@ -12,18 +16,38 @@ export const sendTwoFactorTokenEmail = async (email: string, token: string) => {
   //   subject: "2FA Code",
   //   html: `<p>Your 2FA code: ${token}</p>`,
   // });
-  const { data, error } = await resend.emails.send({
-    from: "Acme <onboarding@resend.dev>",
-    to: ["gauravhariyani12.gh@gmail.com"],
-    subject: "Hello World",
-    html: `<p>Your 2FA code: ${token}</p>`,
-  });
+  try {
+    const { data, error } = await resend.emails.send({
+      from: "Acme <onboarding@resend.dev>",
+      to: ["gauravhariyani12.gh@gmail.com"],
+      subject: "2FA Code",
+      html: `<p>Your 2FA code: ${token}</p>`,
+    });
 
-  if (error) {
-    return console.error({ error });
+    if (error) {
+      console.error('Resend error:', error);
+      return NextResponse.json({ message: 'Error sending email with Resend', error: error.message }, { status: 500 });
+    }
+
+    console.log('Resend data:', data);
+
+    const msg = {
+      to: "gauravhariyani12.gh@gmail.com",
+      from: process.env.SENDGRID_SENDER_EMAIL!,
+      subject: "2FA Code",
+      text: `Your 2FA code: ${token}`,
+      html: `<p>Your 2FA code: ${token}</p>`,
+    };
+    
+    await sgMail.send(msg);
+
+    return NextResponse.json({ message: 'Email sent successfully' }, { status: 200 });
+
+  } catch (error: any) {
+    console.error('Error sending email:', error);
+    return NextResponse.json({ message: 'Error sending email', error: error.message }, { status: 500 });
   }
 
-  console.log({ data });
 };
 
 export const sendPasswordResetEmail = async (email: string, token: string) => {
