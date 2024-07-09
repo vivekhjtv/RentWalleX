@@ -25,7 +25,7 @@ import { useRouter } from "next/navigation";
 export const SidebarWrapper = () => {
   const pathname = usePathname();
   const { collapsed, setCollapsed } = useSidebarContext();
-  const [buttonDisable, setButtonDisable] = useState(false);
+  const [buttonDisable, setButtonDisable] = useState(true);
   const { push } = useRouter();
   useEffect(() => {
     applicationCheck().then((data: any) => {
@@ -44,75 +44,77 @@ export const SidebarWrapper = () => {
     });
   }, []);
   return (
-    <aside className="h-screen z-[202] sticky top-0">
-      {collapsed ? (
-        <div className={Sidebar.Overlay()} onClick={setCollapsed} />
-      ) : null}
-      <div
-        className={Sidebar({
-          collapsed: collapsed,
-        })}
-      >
-        <div className={Sidebar.Header()}>
-          <CompaniesDropdown />
-        </div>
-        <div className="flex flex-col justify-between h-full">
-          <div className={Sidebar.Body()}>
-            <SidebarMenu title="">
-              <SidebarItem
-                title="Dashboard"
-                icon={<HomeIcon />}
-                isActive={pathname === "/home"}
-                href={buttonDisable ? "application" : "/home"}
-              />
-              <SidebarItem
-                isActive={pathname === "/rentalHome"}
-                title="My Apartment"
-                icon={<AccountsIcon />}
-                href={buttonDisable ? "application" : "/rentalHome"}
-              />
-              <SidebarItem
-                isActive={pathname === "/membership"}
-                title="Membership"
-                icon={<PaymentsIcon />}
-                href={"/membership"}
-              />
-              <SidebarItem
-                isActive={pathname === "/application"}
-                title="My Application"
-                icon={<ViewIcon />}
-                href="application"
-              />
-              <CollapseItems
-                icon={<BalanceIcon />}
-                items={["Transactions", "Payment Methods"]}
-                title="Payment"
-              />
-              <SidebarItem
-                isActive={pathname === "/customers"}
-                title="Credit History"
-                icon={<CustomersIcon />}
-              />
-              <SidebarItem
-                isActive={pathname === "/products"}
-                title="Refer & Earn"
-                icon={<ProductsIcon />}
-                href={buttonDisable ? "application" : "/products"}
-              />
-              {/* <SidebarItem
+    <>
+      {!buttonDisable && (
+        <aside className="h-screen z-[202] sticky top-0">
+          {collapsed ? (
+            <div className={Sidebar.Overlay()} onClick={setCollapsed} />
+          ) : null}
+          <div
+            className={Sidebar({
+              collapsed: collapsed,
+            })}
+          >
+            <div className={Sidebar.Header()}>
+              <CompaniesDropdown />
+            </div>
+            <div className="flex flex-col justify-between h-full">
+              <div className={Sidebar.Body()}>
+                <SidebarMenu title="">
+                  <SidebarItem
+                    title="Dashboard"
+                    icon={<HomeIcon />}
+                    isActive={pathname === "/home"}
+                    href={buttonDisable ? "application" : "/home"}
+                  />
+                  <SidebarItem
+                    isActive={pathname === "/rentalHome"}
+                    title="My Apartment"
+                    icon={<AccountsIcon />}
+                    href={buttonDisable ? "application" : "/rentalHome"}
+                  />
+                  <SidebarItem
+                    isActive={pathname === "/membership"}
+                    title="Membership"
+                    icon={<PaymentsIcon />}
+                    href={"/membership"}
+                  />
+                  <SidebarItem
+                    isActive={pathname === "/application"}
+                    title="My Application"
+                    icon={<ViewIcon />}
+                    href="application"
+                  />
+                  <CollapseItems
+                    icon={<BalanceIcon />}
+                    items={["Transactions", "Payment Methods"]}
+                    title="Payment"
+                  />
+                  <SidebarItem
+                    isActive={pathname === "/customers"}
+                    title="Credit History"
+                    icon={<CustomersIcon />}
+                  />
+                  <SidebarItem
+                    isActive={pathname === "/products"}
+                    title="Refer & Earn"
+                    icon={<ProductsIcon />}
+                    href={buttonDisable ? "application" : "/products"}
+                  />
+                  {/* <SidebarItem
                 isActive={pathname === "/reports"}
                 title="Settings"
                 icon={<SettingsIcon />}
               /> */}
-              <SidebarItem
-                isActive={pathname === "/settings"}
-                title="Settings"
-                icon={<SettingsIcon />}
-                href={buttonDisable ? "application" : "/settings"}
-              />
-            </SidebarMenu>
+                  <SidebarItem
+                    isActive={pathname === "/settings"}
+                    title="Settings"
+                    icon={<SettingsIcon />}
+                    href={buttonDisable ? "application" : "/settings"}
+                  />
+                </SidebarMenu>
 
-            {/* <SidebarMenu title="General">
+                {/* <SidebarMenu title="General">
               <SidebarItem
                 isActive={pathname === "/developers"}
                 title="Developers"
@@ -125,15 +127,15 @@ export const SidebarWrapper = () => {
               />
             </SidebarMenu> */}
 
-            {/* <SidebarMenu title="Updates">
+                {/* <SidebarMenu title="Updates">
               <SidebarItem
                 isActive={pathname === "/changelog"}
                 title="Changelog"
                 icon={<ChangeLogIcon />}
               />
             </SidebarMenu> */}
-          </div>
-          {/* <div className={Sidebar.Footer()}>
+              </div>
+              {/* <div className={Sidebar.Footer()}>
             <Tooltip content={"Settings"} color="primary">
               <div className="max-w-fit">
                 <SettingsIcon />
@@ -151,8 +153,10 @@ export const SidebarWrapper = () => {
               />
             </Tooltip>
           </div> */}
-        </div>
-      </div>
-    </aside>
+            </div>
+          </div>
+        </aside>
+      )}
+    </>
   );
 };

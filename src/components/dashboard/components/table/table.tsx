@@ -64,7 +64,7 @@ export const TableWrapper = () => {
         <tbody>
           {data?.Payment_Info.map((datas) => (
             <tr className="bg-lime-100 mb-4">
-              <td>{datas.payemntDate}</td>
+              <td>{datas.payemntDate.toString()}</td>
               <td>{datas.rentAmt}</td>
               <td>{datas.paymentAmt}</td>
               <td>{datas.remainingAmt}</td>

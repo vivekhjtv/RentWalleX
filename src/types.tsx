@@ -30,6 +30,11 @@ export type MembershipInfoType = {
   name: string;
 };
 
+export type MembershipCheckout = {
+  membershipAmt: number;
+  membershipName: string;
+};
+
 export type PropertyInfoType = {
   Property_Info: [
     {

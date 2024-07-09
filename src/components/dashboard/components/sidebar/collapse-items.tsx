@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { ChevronUpIcon } from "../icons/sidebar/chevron-up-icon";
 import { Accordion, AccordionItem } from "@nextui-org/react";
-import { loadStripe } from '@stripe/stripe-js';
+import { loadStripe } from "@stripe/stripe-js";
 import clsx from "clsx";
 import axios from "axios";
 
@@ -12,14 +12,16 @@ interface Props {
   items: string[];
 }
 
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
+const stripePromise = loadStripe(
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
+);
 
 export const CollapseItems = ({ icon, items, title }: Props) => {
   const [open, setOpen] = useState(false);
 
   const handleStripeInitiation = async () => {
     const stripe = await stripePromise;
-    const checkoutSession = await axios.post('/api/checkout-session', {
+    const checkoutSession = await axios.post("/api/checkout-session", {
       quantity: 1,
     });
 
@@ -54,16 +56,16 @@ export const CollapseItems = ({ icon, items, title }: Props) => {
           }
         >
           <div className="pl-12">
-            {items.map((item, index) => (
+            {items.map((item, index) =>
               item === "Transactions" ? (
-                <a href="/accounts"
+                <a
+                  href="/accounts"
                   key={index}
                   className="w-full flex rounded-xl text-default-500 hover:border-solid hover:border-2 hover:border-lime-300 transition-colors"
                 >
                   {item}
                 </a>
-              ) : 
-              (
+              ) : (
                 <a
                   key={index}
                   className="w-full flex rounded-xl text-default-500 hover:border-solid hover:border-2 hover:border-lime-300 transition-colors"
@@ -72,7 +74,7 @@ export const CollapseItems = ({ icon, items, title }: Props) => {
                   {item}
                 </a>
               )
-            ))}
+            )}
           </div>
         </AccordionItem>
       </Accordion>

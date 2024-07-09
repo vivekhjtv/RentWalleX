@@ -18,6 +18,7 @@ export default function Form() {
   const [currentStep, setCurrentStep] = useState(0);
   const [selectedImage, setSelectedImage] = useState("");
   const [incomeType, setIncomeType] = useState("Weekly");
+  const [rentAmt, setRentAmt] = useState(0);
   const [selectedFile, setSelectedFile] = useState<File>();
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | undefined>("");
@@ -125,6 +126,13 @@ export default function Form() {
   const handleIncomeLabel = (event: any) => {
     const type = event.target.value;
     setIncomeType(type);
+    console.log(event.target.value);
+  };
+
+  const handleMembershipPlans = (event: any) => {
+    const type = event.target.value;
+    setSelectedOption("gold");
+    setRentAmt(type);
     console.log(event.target.value);
   };
 
@@ -692,6 +700,7 @@ export default function Form() {
                           {...register("rentAmt")}
                           autoComplete="rentAmt"
                           className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+                          onChange={handleMembershipPlans}
                         />
                         {errors.rentAmt?.message && (
                           <p className="mt-2 text-sm text-red-400">
@@ -1006,7 +1015,7 @@ export default function Form() {
                         <p>Membership Selection</p>
                       </div>
                       <div className="sm:col-span-4 ">
-                        <div className="flex flex-col">
+                        <div className="flex flex-col" hidden={rentAmt > 1500}>
                           <div className="mb-2">
                             <label>
                               <input

@@ -17,9 +17,12 @@ export const PaymentInfo = async () => {
   return result;
 };
 
-export const SavePaymentInfo = async (paymentAmt: string) => {
+export const SavePaymentInfo = async (paymentAmt: number, status: string) => {
   const session = await auth();
-  const rentAmt = 2000;
+  const rentAmt = "2000";
+  const remain = Number(rentAmt) - Number(paymentAmt);
+  const date = new Date().toISOString();
+  console.log(status);
   const result = db.user_Info.update({
     where: {
       email: session?.user.email!,
@@ -28,10 +31,14 @@ export const SavePaymentInfo = async (paymentAmt: string) => {
       Payment_Info: {
         create: {
           rentAmt: rentAmt,
-          paymentAmt: paymentAmt,
-          remainingAmt: Number(rentAmt) - Number(paymentAmt),
+          paymentAmt: paymentAmt.toString(),
+          remainingAmt: remain.toString(),
+          payemntDate: date,
+          status: status,
         },
       },
     },
   });
+  console.log(result);
+  return result;
 };

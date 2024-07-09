@@ -4,6 +4,8 @@ import React from "react";
 import { insertMembershipdetails } from "../../../../../actions/membership";
 import { auth } from "../../../../../auth";
 import { useSession } from "next-auth/react";
+import { loadStripe } from "@stripe/stripe-js";
+import axios from "axios";
 const pictureUsers = [
   "https://i.pravatar.cc/150?u=a042581f4e29026024d",
   "https://i.pravatar.cc/150?u=a042581f4e29026704d",
@@ -11,7 +13,26 @@ const pictureUsers = [
   "https://i.pravatar.cc/150?u=a048581f4e29026701d",
   "https://i.pravatar.cc/150?u=a092581d4ef9026700d",
 ];
+const stripePromise = loadStripe(
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
+);
 
+const handleStripeInitiation = async () => {
+  const stripe = await stripePromise;
+  const checkoutSession = await axios.post("/api/checkout-session", {
+    quantity: 1,
+    membershipAmt: 25,
+    membershipName: "Platinum",
+  });
+
+  const result = await stripe!.redirectToCheckout({
+    sessionId: checkoutSession.data.id,
+  });
+
+  if (result.error) {
+    alert(result.error.message);
+  }
+};
 export const MembershipTypeCards = ({
   id,
   membershipType,
@@ -22,18 +43,18 @@ export const MembershipTypeCards = ({
   const session = useSession();
   const userId = session?.data?.user.email!;
   const handleBuy = () => {
-    insertMembershipdetails(
-      userId,
-      membershipType,
-      membershipAmt,
-      membershipDuration,
-      membershipAmenities
-    ).then((result) => {
-      if (confirm("Do you want to upgrade the membership?") == true) {
-        alert(result);
-      } else {
-      }
-    });
+    // insertMembershipdetails(
+    //   userId,
+    //   membershipType,
+    //   membershipAmt,
+    //   membershipDuration,
+    //   membershipAmenities
+    // ).then((result) => {
+    //   if (confirm("Do you want to upgrade the membership?") == true) {
+    //     alert(result);
+    //   } else {
+    //   }
+    // });
   };
   return (
     <div className="block max-w-sm p-6 m-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
@@ -50,7 +71,7 @@ export const MembershipTypeCards = ({
         {membershipAmenities}
       </p>
       <button
-        onClick={() => handleBuy()}
+        onClick={() => handleStripeInitiation()}
         className="bg-lime-100 p-3 mt-3 rounded-xl"
       >
         Upgrade

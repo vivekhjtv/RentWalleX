@@ -32,8 +32,13 @@ export const insertMembershipdetails = async (
   membershipAmenities: any
 ) => {
   const start = new Date().toISOString();
-  const ends = new Date().toISOString();
+
+  const ends = new Date();
+  ends.setFullYear(ends.getFullYear() + 1);
+  const finalEnds = ends.toISOString();
   console.log(id);
+  console.log(start);
+  console.log(finalEnds);
   const result = await db.user_Info.update({
     where: {
       email: id,
@@ -45,7 +50,7 @@ export const insertMembershipdetails = async (
           membershipAmt: membershipAmt,
           membershipDuration: membershipDuration,
           membershipStatus: "Active",
-          membershipExpireDate: ends,
+          membershipExpireDate: finalEnds,
           membershipStartDate: start,
         },
       },

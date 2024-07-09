@@ -3,9 +3,9 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { SessionProvider, useSession } from "next-auth/react";
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from "@prisma/client";
 import { db } from "@/lib/db";
-
+import { SavePaymentInfo } from "../../../../actions/payment";
 type SessionData = {
   id: string;
   amount: number;
@@ -13,7 +13,7 @@ type SessionData = {
   amount_total: number;
   status: string;
   receipt_email: string;
-//   metadata: object;
+  //   metadata: object;
   created: string;
   customer_details: object;
   expires_at: string;
@@ -24,13 +24,12 @@ type SessionData = {
   payment_status: string;
 };
 
-const prisma = new PrismaClient();
-
 const Success = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const session = useSession();
   const sessionId = searchParams?.get("session_id");
+
   const [sessionData, setSessionData] = useState<SessionData | null>();
 
   useEffect(() => {
@@ -40,18 +39,13 @@ const Success = () => {
           const response = await axios.get(
             `/api/checkout-session?session_id=${sessionId}`
           );
+          console.log(response.data);
           setSessionData(response.data.session);
-          await savePaymentInfo(response.data.session);
-          const paymentInfo = await prisma.Payment_Info.create({
-            data: {
-              userId: session.userId,
-              rentAmt: paymentData.rentAmt,
-              paymentAmt: paymentData.paymentAmt,
-              remainingAmt: paymentData.remainingAmt,
-              paymentDate: new Date(paymentData.paymentDate),
-              status: paymentData.status,
-            },
-          });
+          // await savePaymentInfo(response.data.session);
+          // SavePaymentInfo(
+          //   response.data.session.amount_total! / 100,
+          //   response.data.session.payment_status
+          // )
         } catch (error) {
           console.error(error);
         }
@@ -61,29 +55,29 @@ const Success = () => {
     }
   }, [sessionId]);
 
-  const savePaymentInfo = async (sessionData: SessionData) => {
-    try {
-      await axios.post('/api/save-transaction', {
-        sessionId: sessionData.id,
-        created: new Date(sessionData.created * 1000).toLocaleString(),
-        currency: sessionData.currency,
-        amount_total: sessionData.amount_total,
-        customer_details: sessionData.customer_details,
-        customer_email: sessionData.receipt_email,
-        expires_at: new Date(sessionData.expires_at * 1000).toLocaleString(), // Convert Unix timestamp to human-readable date
-        // metadata: sessionData.metadata,
-        mode: sessionData.mode,
-        payment_intent: sessionData.payment_intent,
-        payment_method_options: sessionData.payment_method_options,
-        payment_method_types: sessionData.payment_method_types,
-        payment_status: sessionData.payment_status,
-        status: sessionData.status,
-      });
-      console.log('Transaction saved successfully');
-    } catch (error) {
-      console.error('Error saving transaction:', error);
-    }
-  };
+  // const savePaymentInfo = async (sessionData: SessionData) => {
+  //   try {
+  //     await axios.post("/api/save-transaction", {
+  //       sessionId: sessionData.id,
+  //       created: new Date(sessionData.created * 1000).toLocaleString(),
+  //       currency: sessionData.currency,
+  //       amount_total: sessionData.amount_total,
+  //       customer_details: sessionData.customer_details,
+  //       customer_email: sessionData.receipt_email,
+  //       expires_at: new Date(sessionData.expires_at * 1000).toLocaleString(), // Convert Unix timestamp to human-readable date
+  //       // metadata: sessionData.metadata,
+  //       mode: sessionData.mode,
+  //       payment_intent: sessionData.payment_intent,
+  //       payment_method_options: sessionData.payment_method_options,
+  //       payment_method_types: sessionData.payment_method_types,
+  //       payment_status: sessionData.payment_status,
+  //       status: sessionData.status,
+  //     });
+  //     console.log("Transaction saved successfully");
+  //   } catch (error) {
+  //     console.error("Error saving transaction:", error);
+  //   }
+  // };
 
   return (
     <div className="w-full max-w-4xl mx-auto py-12 md:py-16 lg:py-20 min-h-[84vh]">
@@ -120,12 +114,12 @@ const Success = () => {
         </div>
       </div>
       <button
-              className="w-44 px-4 py-2 text-white bg-blue-500 hover:bg-blue-600 rounded-md"
-              onClick={() => router.push('/home')}
-            >
-              Return to Home
-            </button>
-            {/* <button
+        className="w-44 px-4 py-2 text-white bg-blue-500 hover:bg-blue-600 rounded-md"
+        onClick={() => router.push("/home")}
+      >
+        Return to Home
+      </button>
+      {/* <button
               className="ml-4 w-full px-4 py-2 text-white bg-gray-500 hover:bg-gray-600 rounded-md"
               onClick={() => router.push('/my-tickets')}
             >
